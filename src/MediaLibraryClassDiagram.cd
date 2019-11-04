@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MediaLibrary.MediaItems.Audio">
+    <Position X="10.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAIAAAAAAAAAABAAAAAAAAIAAAAACAAAA=</HashCode>
+      <FileName>src\MediaItems\Audio.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MediaLibrary.MediaItems.MediaItem">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAoAAAAAAAAAQAAAAAAEAAAQAAAACAAAA=</HashCode>
+      <FileName>src\MediaItems\MediaItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MediaLibrary.MediaItems.Photo">
+    <Position X="12.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAEAAAAAAAEAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>src\MediaItems\Photo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MediaLibrary.MediaItems.Video">
+    <Position X="12.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgBAAAAAAAIAAAEAAAAAABEAgAAAAAIAAAAACAAAA=</HashCode>
+      <FileName>src\MediaItems\Video.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MediaLibrary.src.MediaPlayer.Album" BaseTypeListCollapsed="true">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgAAAAAABAIAAAgAAQAAQAgEAIAEAEYAAAAACAAAA=</HashCode>
+      <FileName>src\MediaPlayer\Album.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="MediaItems" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MediaLibrary.src.MediaPlayer.MediaPlayer" BaseTypeListCollapsed="true">
+    <Position X="5" Y="0.5" Width="2.25" />
+    <AssociationLine Name="Albums" Type="MediaLibrary.src.MediaPlayer.Album" FixedFromPoint="true">
+      <Path>
+        <Point X="7.25" Y="1.75" />
+        <Point X="8" Y="1.75" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAABgAAAEAAgIAAAAAAAAAAAAAAAAEAAgAAACACAAAA=</HashCode>
+      <FileName>src\MediaPlayer\MediaPlayer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Albums" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="MediaLibrary.src.MediaItems.Interfaces.IAudio">
+    <Position X="10.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAABAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>src\MediaItems\Interfaces\IAudio.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MediaLibrary.src.MediaItems.Interfaces.IMediaItem">
+    <Position X="8.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAEAAAAAAAACAAAA=</HashCode>
+      <FileName>src\MediaItems\Interfaces\IMediaItem.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MediaLibrary.src.MediaItems.Interfaces.IPhoto">
+    <Position X="7" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\MediaItems\Interfaces\IPhoto.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MediaLibrary.src.MediaItems.Interfaces.IVideo">
+    <Position X="8.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\MediaItems\Interfaces\IVideo.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MediaLibrary.src.MediaPlayer.Interfaces.IMediaList">
+    <Position X="5.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgAAAAAAAAAAAAAAAQAAQAgEAIAAAEYAAAAAAAAAA=</HashCode>
+      <FileName>src\MediaPlayer\Interfaces\IMediaList.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MediaLibrary.src.MediaPlayer.IMediaPlayer">
+    <Position X="5.25" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAABgAAAEAAgAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>src\MediaPlayer\Interfaces\IMediaPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
