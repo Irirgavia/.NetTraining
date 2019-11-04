@@ -1,4 +1,6 @@
 # .NetTraining
-Tasks on course .NET:
+Each task is a separate branch with the same name.
+
+## Tasks on course .NET:
 * Task0 MediaLibrary
 * Task1 Chef
