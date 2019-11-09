@@ -10,3 +10,6 @@
 
 ## Шеф-повар. 
 Определить иерархию овощей. Сделать салат. Посчитать калорийность. Провести сортировку овощей для салата на основе одного из параметров. Найти овощи в салате, соответствующие заданному диапазону калорийности.
+
+Class system for the "Chef Library".
+![ClassDiagram](https://github.com/Irirgavia/.NetTraining/blob/Task1_Chef/ChefLibrary/Hierarchy/ChefClassDiagram.png)
