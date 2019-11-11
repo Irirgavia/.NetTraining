@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using ChefLibrary;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using ChefLibrary.Products;
 using static ChefLibrary.Products.ProductTypes.ProductTypes;
@@ -19,17 +20,12 @@ namespace ChefLibrary.Tests
         [TestInitialize()]
         public void Initialize()
         {
-            testSalad = new Salad("testSalad", new List<Product>());
-
             product1 = new Egg("chikenEgg", 100, new Caloricity(12.7, 10.9, 0.7), EggType.Chicken);
             product2 = new Vegetable("salad", 200, new Caloricity(1.8, 1.1, 2.7), VegetableType.Salad);
             product3 = new Cereal("baget", 100, new Caloricity(7.5, 2.9, 51.4), CerealType.Millet);
             product4 = new Sauce("oil", 50, new Caloricity(0.0, 99.8, 0.0), SauseType.Oil);
 
-            testSalad.AddProduct(product1);
-            testSalad.AddProduct(product2);
-            testSalad.AddProduct(product3);
-            testSalad.AddProduct(product4);
+            testSalad = new Salad("testSalad", new List<Product>() { product1, product2, product3, product4});
         }
 
         [TestMethod()]
@@ -60,6 +56,12 @@ namespace ChefLibrary.Tests
         {
             var expectedProducts = new List<Product>() { product2 };
             Assert.AreEqual(expectedProducts.ToString(), testSalad.FindProductsByName("salad").ToString());
+        }
+        [TestMethod()]
+        public void FindProductsByWeigthTest()
+        {
+            var expectedProducts = new List<Product>() { product1, product3 };
+            Assert.AreEqual(expectedProducts.ToString(), testSalad.FindProductsByWeigth(100).ToString());
         }
 
         [TestMethod()]

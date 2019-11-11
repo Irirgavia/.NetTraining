@@ -9,7 +9,7 @@ namespace ChefLibrary
     public class Salad
     {
         public string Name { get; private set; }
-        public List<Product> Products { get; set; }
+        public List<Product> Products { get; private set; }
 
         public Salad(
             string name,
@@ -65,6 +65,18 @@ namespace ChefLibrary
             if (findedProduct == null)
             {
                 throw new ArgumentException($"There is no component with name {nameProduct}.");
+            }
+            return findedProduct.ToList<Product>();
+        }
+        public List<Product> FindProductsByWeigth(double weigth)
+        {
+            var findedProduct = from product in Products
+                                where product.Weight == weigth
+                                select product;
+
+            if (findedProduct == null)
+            {
+                throw new ArgumentException($"There is no component with weigth {weigth}.");
             }
             return findedProduct.ToList<Product>();
         }
