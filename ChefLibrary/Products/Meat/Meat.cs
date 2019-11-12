@@ -1,10 +1,16 @@
-﻿namespace ChefLibrary.Products.Egg
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ChefLibrary.Products.Meat
 {
-    public class Egg : Product
+    public class Meat : Product
     {
         public string Animal { get; private set; }
         public string Сondition { get; private set; }
-        public Egg(
+        public Meat(
             string name,
             double weight,
             Caloricity caloricity,
@@ -17,7 +23,7 @@
         }
         public override string ToString()
         {
-            return $"{base.ToString()} {Animal} {Сondition}";
+            return $"{base.ToString()} {Сondition}";
         }
     }
 }

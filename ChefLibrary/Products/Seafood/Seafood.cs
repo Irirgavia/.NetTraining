@@ -5,23 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using static ChefLibrary.Products.ProductTypes.ProductTypes;
 
-namespace ChefLibrary.Products
+namespace ChefLibrary.Products.Seafood
 {
     public class Seafood: Product
     {
-        public SeafoodType SeafoodType { get; private set; }
+        public string WaterType { get; private set; }
         public Seafood(
             string name,
             double weight,
             Caloricity caloricity,
-            SeafoodType seafoodType
+            string waterType
             ) : base(name, weight, caloricity)
         {
-            SeafoodType = seafoodType;
+            WaterType = waterType;
         }
         public override string ToString()
         {
-            return $"{base.ToString()} {SeafoodType}";
+            return $"{base.ToString()} {WaterType}";
         }
     }
 }
