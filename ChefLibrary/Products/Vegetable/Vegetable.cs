@@ -5,23 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using static ChefLibrary.Products.ProductTypes.ProductTypes;
 
-namespace ChefLibrary.Products
+namespace ChefLibrary.Products.Vegetable
 {
     public class Vegetable: Product
     {
-        public VegetableType VegetableType { get; private set; }
+        public string Condition { get; private set; }
         public Vegetable(
             string name,
             double weight,
             Caloricity caloricity,
-            VegetableType vegetableType
+            string condition
             ) : base(name, weight, caloricity)
         {
-            VegetableType = vegetableType;
+            Condition = condition;
         }
         public override string ToString()
         {
-            return $"{base.ToString()} {VegetableType}";
+            return $"{base.ToString()} {Condition}";
         }
     }
 }
