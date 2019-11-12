@@ -9,12 +9,12 @@ namespace ChefLibrary.Products
 {
     public class Sauce: Product
     {
-        public SauseType SauseType { get; private set; }
+        public string SauseType { get; private set; }
         public Sauce(
             string name,
             double weight,
             Caloricity caloricity,
-            SauseType sauseType
+            string sauseType
             ) : base(name, weight, caloricity)
         {
             SauseType = sauseType;
