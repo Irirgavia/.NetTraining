@@ -14,7 +14,7 @@ namespace ChefLibrary.Products.Cereal
             string name,
             double weight,
             Caloricity caloricity,
-            BaseType baseType,
+            string baseType,
             RiceType riceType
             ) : base(name, weight, caloricity, baseType)
         {

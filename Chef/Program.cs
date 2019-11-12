@@ -1,8 +1,12 @@
 ﻿using ChefLibrary;
 using ChefLibrary.Products;
+using ChefLibrary.Products.Cereal;
+using ChefLibrary.Products.Egg;
+using ChefLibrary.Products.Vegetable;
 using System;
 using System.Collections.Generic;
-using static ChefLibrary.Products.ProductTypes.ProductTypes;
+using static ChefLibrary.Products.Cereal.CerealTypes;
+using static ChefLibrary.Products.Vegetable.VegetableTypes;
 
 namespace Chef
 {
@@ -12,10 +16,10 @@ namespace Chef
         {
             try
             {
-                Product product1 = new Egg("chikenEgg", 100, new Caloricity(12.7, 10.9, 0.7), EggType.Chicken);
-                Product product2 = new Vegetable("salad", 200, new Caloricity(1.8, 1.1, 2.7), VegetableType.Salad);
-                Product product3 = new Cereal("baget", 100, new Caloricity(7.5, 2.9, 51.4), CerealType.Millet);
-                Product product4 = new Sauce("oil", 50, new Caloricity(0.0, 99.8, 0.0), SauseType.Oil);
+                Product product1 = new Egg("chikenEgg", 100, new Caloricity(12.7, 10.9, 0.7), "chicken", "boiled");
+                Product product2 = new Cucumber("cucumber", 200, new Caloricity(1.8, 1.1, 2.7), "raw", CucumberType.CucumberGermanShirt);
+                Product product3 = new Rice("baget", 100, new Caloricity(7.5, 2.9, 51.4), "milk", RiceType.RoundGrainRice);
+                Product product4 = new Sauce("oil", 50, new Caloricity(0.0, 99.8, 0.0), "oil");
 
                 Salad salad = new Salad("testSalad", new List<Product>() { product1, product2, product3, product4});
 

@@ -42,14 +42,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Products\Caloricity.cs" />
-    <Compile Include="Products\Cereal.cs" />
-    <Compile Include="Products\Egg.cs" />
-    <Compile Include="Products\Fruit.cs" />
+    <Compile Include="Products\Cereal\Buckwheat.cs" />
+    <Compile Include="Products\Cereal\Cereal.cs" />
+    <Compile Include="Products\Cereal\CerealTypes.cs" />
+    <Compile Include="Products\Cereal\Oatmeal.cs" />
+    <Compile Include="Products\Cereal\Rice.cs" />
+    <Compile Include="Products\Egg\Egg.cs" />
+    <Compile Include="Products\Fruit\Apple.cs" />
+    <Compile Include="Products\Fruit\Banana.cs" />
+    <Compile Include="Products\Fruit\Fruit.cs" />
+    <Compile Include="Products\Fruit\FruitTypes.cs" />
+    <Compile Include="Products\Meat\Meat.cs" />
     <Compile Include="Products\Product.cs" />
-    <Compile Include="Products\ProductTypes\ProductTypes.cs" />
-    <Compile Include="Products\Sauce.cs" />
-    <Compile Include="Products\Seafood.cs" />
-    <Compile Include="Products\Vegetable.cs" />
+    <Compile Include="Products\Sauce\Sauce.cs" />
+    <Compile Include="Products\Seafood\Сaviar .cs" />
+    <Compile Include="Products\Seafood\Seafood.cs" />
+    <Compile Include="Products\Seafood\SeafoodTypes.cs" />
+    <Compile Include="Products\Seafood\Seaweed.cs" />
+    <Compile Include="Products\Vegetable\Cucumber.cs" />
+    <Compile Include="Products\Vegetable\Tomato.cs" />
+    <Compile Include="Products\Vegetable\Vegetable.cs" />
+    <Compile Include="Products\Vegetable\VegetableTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Salad.cs" />
   </ItemGroup>
@@ -59,5 +72,6 @@
   <ItemGroup>
     <Content Include="Hierarchy\ChefClassDiagram.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

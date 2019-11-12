@@ -2,7 +2,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using ChefLibrary.Products;
-using static ChefLibrary.Products.ProductTypes.ProductTypes;
+using ChefLibrary.Products.Egg;
+using ChefLibrary.Products.Vegetable;
+using ChefLibrary.Products.Cereal;
+using static ChefLibrary.Products.Vegetable.VegetableTypes;
+using static ChefLibrary.Products.Cereal.CerealTypes;
 
 namespace ChefLibrary.Tests
 {
@@ -20,10 +24,10 @@ namespace ChefLibrary.Tests
         [TestInitialize()]
         public void Initialize()
         {
-            product1 = new Egg("chikenEgg", 100, new Caloricity(12.7, 10.9, 0.7), EggType.Chicken);
-            product2 = new Vegetable("salad", 200, new Caloricity(1.8, 1.1, 2.7), VegetableType.Salad);
-            product3 = new Cereal("baget", 100, new Caloricity(7.5, 2.9, 51.4), CerealType.Millet);
-            product4 = new Sauce("oil", 50, new Caloricity(0.0, 99.8, 0.0), SauseType.Oil);
+            product1 = new Egg("chikenEgg", 100, new Caloricity(12.7, 10.9, 0.7), "chicken", "boiled");
+            product2 = new Cucumber("cucumber", 200, new Caloricity(1.8, 1.1, 2.7), "raw", CucumberType.CucumberGermanShirt);
+            product3 = new Rice("baget", 100, new Caloricity(7.5, 2.9, 51.4), "milk", RiceType.RoundGrainRice);
+            product4 = new Sauce("oil", 50, new Caloricity(0.0, 99.8, 0.0), "oil");
 
             testSalad = new Salad("testSalad", new List<Product>() { product1, product2, product3, product4});
         }
