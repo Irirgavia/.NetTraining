@@ -3,24 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ChefLibrary.Products.MixedProducts;
 
-namespace ChefLibrary.Products.Vegetable
+namespace ChefLibrary.Products.MixedProducts
 {
-    public class Vegetable: Product
+    public class Sauce: MixedProduct
     {
-        public string Condition { get; private set; }
-        public Vegetable(
+        public string SauseType { get; private set; }
+        public Sauce(
             string name,
             double weight,
             Caloricity caloricity,
-            string condition
+            string sauseType
             ) : base(name, weight, caloricity)
         {
-            Condition = condition;
+            SauseType = sauseType;
         }
         public override string ToString()
         {
-            return $"{base.ToString()} {Condition}";
+            return $"{base.ToString()} {SauseType}";
         }
     }
 }

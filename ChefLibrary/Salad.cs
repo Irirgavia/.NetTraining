@@ -1,120 +1,48 @@
-﻿using ChefLibrary.Products;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ChefLibrary
+﻿namespace ChefLibrary
 {
-    public class Salad
-    {
-        public string Name { get; private set; }
-        public List<Product> Products { get; private set; }
+    using System.Collections.Generic;
+    using System.Text;
 
+    using ChefLibrary.Products;
+
+    public class Salad : ISalad
+    {
         public Salad(
             string name,
             List<Product> products)
         {
-            Name = name;
-            Products = products;
+            this.Name = name;
+            this.Products = products;
         }
+
+        public string Name { get; private set; }
+
+        public List<Product> Products { get; private set; }
+
         public override string ToString()
         {
-            StringBuilder stringBuilder = new StringBuilder($"Salad name: {Name}");
-            foreach (var product in Products)
+            var stringBuilder = new StringBuilder($"Salad name: {this.Name},");
+            foreach (var product in this.Products)
             {
-                stringBuilder.Append(product.ToString());
+                stringBuilder.Append($" {product},");
             }
 
-            return stringBuilder.ToString();
+            return stringBuilder.ToString().TrimEnd(',');
         }
-        public double GetWeight()
+
+        public List<Product> GetAllProducts()
         {
-            double weight = 0;
-            foreach (var product in Products)
-            {
-                weight += product.Weight;
-            }
-
-            return weight;
+            return this.Products;
         }
-        public double GetCalories()
-        {
-            double calories = 0;
-            foreach (var product in Products)
-            {
-                calories += product.GetProductCalories();
-            }
 
-            return calories;
-        }
         public void AddProduct(Product product)
         {
-            Products.Add(product);
+            this.Products.Add(product);
         }
+
         public void RemoveProduct(Product product)
         {
-            Products.Remove(product);
-        }
-        public List<Product> FindProductsByName(string nameProduct)
-        {
-            var findedProduct = from product in Products
-                                where String.Compare(product.Name, nameProduct) == 0
-                                select product;
-
-            if (findedProduct == null)
-            {
-                throw new ArgumentException($"There is no component with name {nameProduct}.");
-            }
-            return findedProduct.ToList<Product>();
-        }
-        public List<Product> FindProductsByWeigth(double weigth)
-        {
-            var findedProduct = from product in Products
-                                where product.Weight == weigth
-                                select product;
-
-            if (findedProduct == null)
-            {
-                throw new ArgumentException($"There is no component with weigth {weigth}.");
-            }
-            return findedProduct.ToList<Product>();
-        }
-        public List<Product> FindProductsByCalories(double beginValue, double endValue)
-        {
-            var findedProduct = from product in Products
-                                where product.GetProductCalories() >= beginValue && product.GetProductCalories() <= endValue
-                                select product;
-
-            if (findedProduct == null)
-            {
-                throw new ArgumentException($"There is no component with {beginValue} - {endValue} calories.");
-            }
-            return findedProduct.ToList<Product>();
-        }
-        public List<Product> SortByName()
-        {
-            var sortedProduct = from product in Products
-                                orderby product.Name
-                                select product;
-
-            return sortedProduct.ToList<Product>();
-        }
-        public List<Product> SortByWeigth()
-        {
-            var sortedProduct = from product in Products
-                                orderby product.Weight
-                                select product;
-
-            return sortedProduct.ToList<Product>();
-        }
-        public List<Product> SortByCalories()
-        {
-            var sortedProduct = from product in Products
-                                orderby product.GetProductCalories()
-                                select product;
-
-            return sortedProduct.ToList<Product>();
+            this.Products.Remove(product);
         }
     }
 }

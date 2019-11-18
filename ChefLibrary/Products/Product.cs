@@ -1,34 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ChefLibrary.Products
+﻿namespace ChefLibrary.Products
 {
-    public abstract class Product
+    public abstract class Product : IProduct
     {
-        public string Name { get; set; }
-        public double Weight { get; set; }
-        public Caloricity Caloricity { get; private set; }
-        public double GetProductCalories()
-        {
-            return Weight * Caloricity.Calories / 100;
-        }
+        protected readonly double DigestionPercent;
 
-        public Product(
+        protected Product(
             string name,
             double weight,
-            Caloricity caloricity
-            )
+            Caloricity caloricity,
+            double digestionPercent = 0)
         {
-            Name = name;
-            Weight = weight;
-            Caloricity = caloricity;
+            this.Name = name;
+            this.Weight = weight;
+            this.Caloricity = caloricity;
+            this.DigestionPercent = digestionPercent;
         }
+
+        public string Name { get; set; }
+
+        public double Weight { get; set; }
+
+        public Caloricity Caloricity { get; private set; }
+
+         
+        public virtual double GetProductCalories()
+        {
+            return this.Weight * Constants.WeightCoefficientPer100G * this.Caloricity.GetCaloriesPer1G();
+        }
+
         public override string ToString()
         {
-            return $"{Name}: {Weight}g {Caloricity.ToString()}";
+            return $"{this.Name}: {this.Weight}g {this.Caloricity}";
         }
     }
 }

@@ -1,235 +1,121 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="ChefLibrary.Products.Cereal.Cereal">
-    <Position X="17" Y="9.25" Width="1.5" />
+  <Class Name="ChefLibrary.Products.PlantOriginProducts.Cereal">
+    <Position X="24.25" Y="9.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
-      <FileName>Products\Cereal\Cereal.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAkAAAAAAAAAIAAAEAAAAAAAAAAQAA=</HashCode>
+      <FileName>Products\PlantOriginProducts\Cereal.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ChefLibrary.Products.Egg.Egg">
-    <Position X="19" Y="9.25" Width="1.5" />
+  <Class Name="ChefLibrary.Products.AnimalOriginProducts.Egg">
+    <Position X="18.75" Y="9.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAIAAAACAAAAA=</HashCode>
-      <FileName>Products\Egg\Egg.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAkAAAAAAAAAAAAAEAAAAAAAAAAQAA=</HashCode>
+      <FileName>Products\AnimalOriginProducts\Egg.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ChefLibrary.Products.Fruit.Fruit">
-    <Position X="21.25" Y="9.25" Width="1.5" />
+  <Class Name="ChefLibrary.Products.PlantOriginProducts.Fruit">
+    <Position X="22.5" Y="9.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAACAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Products\Fruit\Fruit.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAkAAAAAAAAAAAAAEAAAAAAAAAAQAA=</HashCode>
+      <FileName>Products\PlantOriginProducts\Fruit.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ChefLibrary.Products.Product">
-    <Position X="23.75" Y="5.25" Width="1.75" />
+    <Position X="24" Y="1.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAgAAAAAAAEAEAAAAQAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAgAAAAAAAEAEAAAAQAACBAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Products\Product.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Caloricity" />
     </ShowAsAssociation>
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ChefLibrary.Products.Sauce">
-    <Position X="23.25" Y="9.25" Width="1.5" />
+  <Class Name="ChefLibrary.Products.PlantOriginProducts.Vegetable">
+    <Position X="26" Y="9.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Products\Sauce\Sauce.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ChefLibrary.Products.Seafood.Seafood">
-    <Position X="25.25" Y="9.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
-      <FileName>Products\Seafood\Seafood.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ChefLibrary.Products.Vegetable.Vegetable">
-    <Position X="29.25" Y="9.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAACAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Products\Vegetable\Vegetable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAkAAAAAAAAAAAAAEAAAAAAAAAAQAA=</HashCode>
+      <FileName>Products\PlantOriginProducts\Vegetable.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ChefLibrary.Salad">
-    <Position X="28.5" Y="4.5" Width="2" />
+    <Position X="27" Y="2" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAECBAAAAAEgAAIQAWAAAAACAAAAAAAAAAAAAQ=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAEIAAIQAQAAAAAAAAAAAAAAAAAAAQ=</HashCode>
       <FileName>Salad.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Products" />
     </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="ChefLibrary.Products.Caloricity">
-    <Position X="26.5" Y="6" Width="1.5" />
+    <Position X="21.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAAAAAAAAAAAAAAEAAAAABAAAAAAABAAAAAAAAAEAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAABAAACAAABAAAAAAAAAEAAA=</HashCode>
       <FileName>Products\Caloricity.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ChefLibrary.Products.Cereal.CerealTypes">
-    <Position X="15" Y="3.25" Width="1.75" />
+  <Class Name="ChefLibrary.Products.AnimalOriginProducts.Meat">
+    <Position X="20.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAkAAAAAAAAAAAAAEAAAAAAAAAAQAA=</HashCode>
+      <FileName>Products\AnimalOriginProducts\Meat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChefLibrary.Products.AnimalOriginProducts.AnimalOriginProduct">
+    <Position X="19.5" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAkABAAAAAAAAQAQMCAIAAAAAAAQAA=</HashCode>
+      <FileName>Products\AnimalOriginProducts\AnimalOriginProduct.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ChefLibrary.Products.PlantOriginProducts.PlantOriginProduct">
+    <Position X="24" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgBAAAAAAgABAAAAAAAAQAQMCAAAAAAAAEQAA=</HashCode>
+      <FileName>Products\PlantOriginProducts\PlantOriginProduct.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ChefLibrary.Products.MixedProducts.MixedProduct">
+    <Position X="27.5" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Products\MixedProducts\MixedProduct.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChefLibrary.Products.MixedProducts.Sauce">
+    <Position X="27.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Products\MixedProducts\Sauce.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChefLibrary.Chef">
+    <Position X="18.75" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAABCAAAAAABAAAAgEAABAEAMAAAAghAAAAAQAAAAAA=</HashCode>
+      <FileName>Chef.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChefLibrary.Constants">
+    <Position X="30.5" Y="1.75" Width="2.5" />
     <Compartments>
-      <Compartment Name="Nested Types" Collapsed="false" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <NestedTypes>
-      <Enum Name="ChefLibrary.Products.Cereal.CerealTypes.OatemalType">
+      <Enum Name="ChefLibrary.Constants.Conditions" Collapsed="true">
         <TypeIdentifier>
-          <NewMemberFileName>Products\Cereal\CerealTypes.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-      <Enum Name="ChefLibrary.Products.Cereal.CerealTypes.RiceType">
-        <TypeIdentifier>
-          <NewMemberFileName>Products\Cereal\CerealTypes.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-      <Enum Name="ChefLibrary.Products.Cereal.CerealTypes.BuckwheatType">
-        <TypeIdentifier>
-          <NewMemberFileName>Products\Cereal\CerealTypes.cs</NewMemberFileName>
+          <NewMemberFileName>Constants.cs</NewMemberFileName>
         </TypeIdentifier>
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Products\Cereal\CerealTypes.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ChefLibrary.Products.Cereal.Oatmeal">
-    <Position X="17" Y="11.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAgAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Products\Cereal\Oatmeal.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ChefLibrary.Products.Cereal.Rice">
-    <Position X="18.75" Y="11.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAgAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Products\Cereal\Rice.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ChefLibrary.Products.Cereal.Buckwheat">
-    <Position X="15.25" Y="11.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAIAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Products\Cereal\Buckwheat.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ChefLibrary.Products.Fruit.Apple">
-    <Position X="20.5" Y="11.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAIEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Products\Fruit\Apple.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ChefLibrary.Products.Fruit.Banana">
-    <Position X="22.25" Y="11.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Products\Fruit\Banana.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ChefLibrary.Products.Fruit.FruitTypes">
-    <Position X="17" Y="3.25" Width="1.75" />
-    <Compartments>
-      <Compartment Name="Nested Types" Collapsed="false" />
-    </Compartments>
-    <NestedTypes>
-      <Enum Name="ChefLibrary.Products.Fruit.FruitTypes.AppleType">
-        <TypeIdentifier>
-          <NewMemberFileName>Products\Fruit\FruitTypes.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-      <Enum Name="ChefLibrary.Products.Fruit.FruitTypes.BananaType">
-        <TypeIdentifier>
-          <NewMemberFileName>Products\Fruit\FruitTypes.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Products\Fruit\FruitTypes.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ChefLibrary.Products.Vegetable.Cucumber">
-    <Position X="28.5" Y="11.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Products\Vegetable\Cucumber.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ChefLibrary.Products.Vegetable.Tomato">
-    <Position X="30.25" Y="11.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
-      <FileName>Products\Vegetable\Tomato.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ChefLibrary.Products.Vegetable.VegetableTypes">
-    <Position X="21" Y="3.25" Width="2" />
-    <Compartments>
-      <Compartment Name="Nested Types" Collapsed="false" />
-    </Compartments>
-    <NestedTypes>
-      <Enum Name="ChefLibrary.Products.Vegetable.VegetableTypes.TomatoType">
-        <TypeIdentifier>
-          <NewMemberFileName>Products\Vegetable\VegetableTypes.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-      <Enum Name="ChefLibrary.Products.Vegetable.VegetableTypes.CucumberType">
-        <TypeIdentifier>
-          <NewMemberFileName>Products\Vegetable\VegetableTypes.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Products\Vegetable\VegetableTypes.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ChefLibrary.Products.Seafood.Сaviar">
-    <Position X="24.5" Y="11.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAQAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Products\Seafood\Сaviar .cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ChefLibrary.Products.Seafood.SeafoodTypes">
-    <Position X="19" Y="3.25" Width="1.75" />
-    <Compartments>
-      <Compartment Name="Nested Types" Collapsed="false" />
-    </Compartments>
-    <NestedTypes>
-      <Enum Name="ChefLibrary.Products.Seafood.SeafoodTypes.CaviarType">
-        <TypeIdentifier>
-          <NewMemberFileName>Products\Seafood\SeafoodTypes.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-      <Enum Name="ChefLibrary.Products.Seafood.SeafoodTypes.SeaweedType">
-        <TypeIdentifier>
-          <NewMemberFileName>Products\Seafood\SeafoodTypes.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Products\Seafood\SeafoodTypes.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ChefLibrary.Products.Seafood.Seaweed">
-    <Position X="26.25" Y="11.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Products\Seafood\Seaweed.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ChefLibrary.Products.Meat.Meat">
-    <Position X="27.25" Y="9.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAIAAAACAAAAA=</HashCode>
-      <FileName>Products\Meat\Meat.cs</FileName>
+      <HashCode>AAAJAACAACgAkCAAoABABgACAAEAJAAATAAAAgIAAAA=</HashCode>
+      <FileName>Constants.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
