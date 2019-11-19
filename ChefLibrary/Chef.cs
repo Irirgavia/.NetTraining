@@ -21,43 +21,33 @@
             set => this.saladBuilder = value;
         }
 
-        public ISalad BuildSalad()
-        {
-            return this.saladBuilder.GetSalad();
-        }
-
-        public ISalad BuildSalad(ISaladBuilder saladBuilder)
-        {
-            return saladBuilder.GetSalad();
-        }
-
-        public double CalculateSumByProperty(ISalad salad, Func<IProduct, double> propertySelector)
+        public static double CalculateSumByProperty(ISalad salad, Func<IProduct, double> propertySelector)
         {
             return salad.Products.Sum(propertySelector);
         }
 
-        public double GetSaladWeight(ISalad salad)
+        public static double GetSaladWeight(ISalad salad)
         {
-            return this.CalculateSumByProperty(
+            return CalculateSumByProperty(
                 salad,
                 x => x.Weight);
         }
 
-        public double GetSaladCalories(ISalad salad)
+        public static double GetSaladCalories(ISalad salad)
         {
-            return this.CalculateSumByProperty(
+            return CalculateSumByProperty(
                 salad,
                 x => x.GetProductCalories());
         }
 
-        public IEnumerable<IProduct> FindProductByProperty(IEnumerable<IProduct> products, Func<IProduct, bool> propertySelector)
+        public static IEnumerable<IProduct> FindProductByProperty(IEnumerable<IProduct> products, Func<IProduct, bool> propertySelector)
         {
             return products.Where(propertySelector);
         }
 
-        public IEnumerable<IProduct> FindProductsByName(ISalad salad, string nameProduct)
+        public static IEnumerable<IProduct> FindProductsByName(ISalad salad, string nameProduct)
         {
-            var foundProducts = this.FindProductByProperty(
+            var foundProducts = FindProductByProperty(
                 salad.Products,
                 x => x.Name == nameProduct);
 
@@ -69,10 +59,10 @@
             return foundProducts;
         }
 
-        public IEnumerable<IProduct> FindProductsByWeight(ISalad salad, double weight)
+        public static IEnumerable<IProduct> FindProductsByWeight(ISalad salad, double weight)
         {
-            var findProducts = this.FindProductByProperty(
-                salad.Products, 
+            var findProducts = FindProductByProperty(
+                salad.Products,
                 x => Math.Abs(x.Weight - weight) < 0);
 
             if (findProducts == null)
@@ -83,9 +73,9 @@
             return findProducts;
         }
 
-        public IEnumerable<IProduct> FindProductsByCalories(ISalad salad, double beginValue, double endValue)
+        public static IEnumerable<IProduct> FindProductsByCalories(ISalad salad, double beginValue, double endValue)
         {
-            var findProducts = this.FindProductByProperty(
+            var findProducts = FindProductByProperty(
                 salad.Products,
                 x => x.GetProductCalories() > beginValue && x.GetProductCalories() < endValue);
 
@@ -97,30 +87,40 @@
             return findProducts;
         }
 
-        public IEnumerable<IProduct> SortProductsByProperty<T>(IEnumerable<IProduct> products, Func<IProduct, T> propertySelector)
+        public static IEnumerable<IProduct> SortProductsByProperty<T>(IEnumerable<IProduct> products, Func<IProduct, T> propertySelector)
         {
             return products.OrderBy(propertySelector);
         }
-         
-        public IEnumerable<IProduct> SortSaladByName(ISalad salad)
+
+        public static IEnumerable<IProduct> SortSaladByName(ISalad salad)
         {
-            return this.SortProductsByProperty(
-                salad.Products, 
+            return SortProductsByProperty(
+                salad.Products,
                 x => x.Name);
         }
 
-        public IEnumerable<IProduct> SortSaladByWeight(ISalad salad)
+        public static IEnumerable<IProduct> SortSaladByWeight(ISalad salad)
         {
-            return this.SortProductsByProperty(
-                salad.Products, 
+            return SortProductsByProperty(
+                salad.Products,
                 x => x.Weight);
         }
 
-        public IEnumerable<IProduct> SortSaladByCalories(ISalad salad)
+        public static IEnumerable<IProduct> SortSaladByCalories(ISalad salad)
         {
-            return this.SortProductsByProperty(
-                salad.Products, 
+            return SortProductsByProperty(
+                salad.Products,
                 x => x.GetProductCalories());
+        }
+
+        public ISalad BuildSalad()
+        {
+            return this.saladBuilder.GetSalad();
+        }
+
+        public ISalad BuildSalad(ISaladBuilder saladBuilder)
+        {
+            return saladBuilder.GetSalad();
         }
     }
 }

@@ -16,11 +16,11 @@
 
                 Console.WriteLine(salad.ToString());
 
-                Console.WriteLine($"Salad weight: {chef.GetSaladWeight(salad)}g");
-                Console.WriteLine($"Salad caloricity: {chef.GetSaladCalories(salad)} kcal \n");
+                Console.WriteLine($"Salad weight: {Chef.GetSaladWeight(salad)}g");
+                Console.WriteLine($"Salad caloricity: {Chef.GetSaladCalories(salad)} kcal \n");
 
                 Console.WriteLine("Sort product by calories:");
-                foreach (var product in chef.SortSaladByCalories(salad))
+                foreach (var product in Chef.SortSaladByCalories(salad))
                 {
                     Console.WriteLine(product);
                 }
@@ -29,7 +29,7 @@
                 double endValue = 1500;
 
                 Console.WriteLine($"\nFind product with {beginValue}-{endValue} caloricity:");
-                foreach (var product in chef.FindProductsByCalories(salad, beginValue, endValue))
+                foreach (var product in Chef.FindProductsByCalories(salad, beginValue, endValue))
                 {
                     Console.WriteLine(product);
                 }
