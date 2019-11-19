@@ -6,21 +6,22 @@
             string name,
             double weight,
             Caloricity caloricity,
-            Constants.Conditions conditions)
+            Conditions conditions)
             : base(name, weight, caloricity, Constants.PlantDigestionPercent)
         {
-            this.PeelPresence = false;
+            this.Conditions = conditions;
+            this.IsPeel = false;
             this.IsChop = false;
             this.IsWash = false;
         }
 
-        public bool PeelPresence { get; set; }
-
-        public Constants.Conditions Conditions { get; set; }
+        public Conditions Conditions { get; set; }
 
         public bool IsChop { get; set; }
 
         public bool IsWash { get; set; }
+
+        public bool IsPeel { get; set; }
 
         public override double GetProductCalories()
         {
@@ -28,6 +29,11 @@
                    * Constants.WeightCoefficientPer100G
                    * (this.Caloricity.GetCaloriesPer1G() + Constants.PectinsEnergyValue)
                    * this.DigestionPercent;
+        }
+
+        public override string ToString()
+        {
+            return $"{base.ToString()} {this.Conditions} wash: {this.IsWash} skin: {this.IsPeel} chop: {this.IsChop}";
         }
 
         public void Wash()
@@ -40,9 +46,9 @@
             this.IsChop = true;
         }
 
-        public void PellOff()
+        public void PeelOff()
         {
-            this.PeelPresence = false;
+            this.IsPeel = false;
         }
 
         public abstract void Boil();

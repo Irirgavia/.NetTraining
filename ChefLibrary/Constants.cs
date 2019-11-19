@@ -29,20 +29,11 @@
         public const double FruitFryingLossPercentage = 0.14;
         public const double VegetableFryingLossPercentage = 0.23;
 
-
         // Baking
         public const double EggBakingLossPercentage = 0.07;
         public const double MeatBakingLossPercentage = 0.28;
         public const double CerealBakingLossPercentage = 0.05;
         public const double FruitBakingLossPercentage = 0.09;
         public const double VegetableBakingLossPercentage = 0.11;
-
-
-        public enum Conditions
-        {
-            Boil,
-            Fry,
-            Bake,
-        }
     }
 }

@@ -1,27 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ChefLibrary.Products.MixedProducts;
-
-namespace ChefLibrary.Products.MixedProducts
+﻿namespace ChefLibrary.Products.MixedProducts
 {
-    public class Sauce: MixedProduct
+    public class Sauce : MixedProduct
     {
-        public string SauseType { get; private set; }
         public Sauce(
             string name,
             double weight,
             Caloricity caloricity,
-            string sauseType
-            ) : base(name, weight, caloricity)
+            SauceСonsistency consistency)
+            : base(name, weight, caloricity)
         {
-            SauseType = sauseType;
+            this.Consistency = consistency;
         }
+
+        public SauceСonsistency Consistency { get; private set; }
+
         public override string ToString()
         {
-            return $"{base.ToString()} {SauseType}";
+            return $"{base.ToString()} {this.Consistency}";
         }
     }
 }

@@ -4,12 +4,14 @@
 
     public interface ISaladBuilder
     {
-        Salad GetSalad();
+        ISalad GetSalad();
 
-        void AddProduct(Product product);
+        void BuildSalad();
 
-        void RemoveProduct(Product product);
+        void AddProduct(IProduct product);
 
-        void MixProduct();
+        void RemoveProduct(IProduct product);
+
+        void MixSalad();
     }
 }

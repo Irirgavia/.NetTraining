@@ -41,15 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builders\OlivieSaladBuilder.cs" />
+    <Compile Include="Builders\OlivierSaladBuilder.cs" />
     <Compile Include="Builders\ISaladBuilder.cs" />
+    <Compile Include="Builders\SaladBuilder.cs" />
+    <Compile Include="Builders\SaladWithCrabSticksBuilder.cs" />
     <Compile Include="Chef.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="ISalad.cs" />
     <Compile Include="Products\AnimalOriginProducts\AnimalOriginProduct.cs" />
     <Compile Include="Products\Caloricity.cs" />
+    <Compile Include="Products\Conditions.cs" />
     <Compile Include="Products\IElementalProduct.cs" />
     <Compile Include="Products\IProduct.cs" />
+    <Compile Include="Products\MixedProducts\SauceСonsistency.cs" />
     <Compile Include="Products\PlantOriginProducts\Cereal.cs" />
     <Compile Include="Products\AnimalOriginProducts\Egg.cs" />
     <Compile Include="Products\PlantOriginProducts\Fruit.cs" />
@@ -68,6 +72,5 @@
   <ItemGroup>
     <Content Include="Hierarchy\ChefClassDiagram.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

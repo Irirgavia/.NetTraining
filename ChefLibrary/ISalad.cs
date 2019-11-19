@@ -6,10 +6,12 @@
 
     public interface ISalad
     {
-        List<Product> GetAllProducts();
+        string Name { get; }
 
-        void AddProduct(Product product);
+        List<IProduct> Products { get; }
 
-        void RemoveProduct(Product product);
+        void AddProduct(IProduct product);
+
+        void RemoveProduct(IProduct product);
     }
 }

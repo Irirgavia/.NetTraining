@@ -14,5 +14,10 @@
         {
             return base.GetProductCalories() * this.DigestionPercent;
         }
+
+        public override string ToString()
+        {
+            return $"{base.ToString()} ";
+        }
     }
 }

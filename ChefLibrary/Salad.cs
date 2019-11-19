@@ -9,7 +9,7 @@
     {
         public Salad(
             string name,
-            List<Product> products)
+            List<IProduct> products)
         {
             this.Name = name;
             this.Products = products;
@@ -17,30 +17,30 @@
 
         public string Name { get; private set; }
 
-        public List<Product> Products { get; private set; }
+        public List<IProduct> Products { get; private set; }
 
         public override string ToString()
         {
-            var stringBuilder = new StringBuilder($"Salad name: {this.Name},");
+            var stringBuilder = new StringBuilder($"Salad name: {this.Name}, \n");
             foreach (var product in this.Products)
             {
-                stringBuilder.Append($" {product},");
+                stringBuilder.Append($" {product},\n");
             }
 
             return stringBuilder.ToString().TrimEnd(',');
         }
 
-        public List<Product> GetAllProducts()
+        public List<IProduct> GetAllProducts()
         {
             return this.Products;
         }
 
-        public void AddProduct(Product product)
+        public void AddProduct(IProduct product)
         {
             this.Products.Add(product);
         }
 
-        public void RemoveProduct(Product product)
+        public void RemoveProduct(IProduct product)
         {
             this.Products.Remove(product);
         }

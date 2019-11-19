@@ -6,7 +6,7 @@
             string name,
             double weight,
             Caloricity caloricity,
-            Constants.Conditions condition,
+            Conditions condition,
             string basis)
             : base(name, weight, caloricity, condition)
         {
@@ -17,7 +17,7 @@
 
         public override void Boil()
         {
-            this.Conditions = Constants.Conditions.Boil;
+            this.Conditions = Conditions.Boil;
             this.Caloricity.Proteins -= Constants.CerealBoilingLossPercentage * this.Caloricity.Proteins;
             this.Caloricity.Fats -= Constants.CerealBoilingLossPercentage * this.Caloricity.Fats;
             this.Caloricity.Carbohydrates -= Constants.CerealBoilingLossPercentage * this.Caloricity.Carbohydrates;
@@ -25,7 +25,7 @@
 
         public override void Fry()
         {
-            this.Conditions = Constants.Conditions.Fry;
+            this.Conditions = Conditions.Fry;
             this.Caloricity.Proteins -= Constants.CerealFryingLossPercentage * this.Caloricity.Proteins;
             this.Caloricity.Fats -= Constants.CerealFryingLossPercentage * this.Caloricity.Fats;
             this.Caloricity.Carbohydrates -= Constants.CerealFryingLossPercentage * this.Caloricity.Carbohydrates;
@@ -33,7 +33,7 @@
 
         public override void Bake()
         {
-            this.Conditions = Constants.Conditions.Bake;
+            this.Conditions = Conditions.Bake;
             this.Caloricity.Proteins -= Constants.CerealBakingLossPercentage * this.Caloricity.Proteins;
             this.Caloricity.Fats -= Constants.CerealBakingLossPercentage * this.Caloricity.Fats;
             this.Caloricity.Carbohydrates -= Constants.CerealBakingLossPercentage * this.Caloricity.Carbohydrates;

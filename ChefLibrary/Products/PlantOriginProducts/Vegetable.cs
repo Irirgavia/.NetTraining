@@ -6,14 +6,14 @@
             string name,
             double weight,
             Caloricity caloricity,
-            Constants.Conditions condition)
+            Conditions condition)
             : base(name, weight, caloricity, condition)
         {
         }
 
         public override void Boil()
         {
-            this.Conditions = Constants.Conditions.Boil;
+            this.Conditions = Conditions.Boil;
             this.Caloricity.Proteins -= Constants.VegetableBoilingLossPercentage * this.Caloricity.Proteins;
             this.Caloricity.Fats -= Constants.VegetableBoilingLossPercentage * this.Caloricity.Fats;
             this.Caloricity.Carbohydrates -= Constants.VegetableBoilingLossPercentage * this.Caloricity.Carbohydrates;
@@ -21,7 +21,7 @@
 
         public override void Fry()
         {
-            this.Conditions = Constants.Conditions.Fry;
+            this.Conditions = Conditions.Fry;
             this.Caloricity.Proteins -= Constants.VegetableFryingLossPercentage * this.Caloricity.Proteins;
             this.Caloricity.Fats -= Constants.VegetableFryingLossPercentage * this.Caloricity.Fats;
             this.Caloricity.Carbohydrates -= Constants.VegetableFryingLossPercentage * this.Caloricity.Carbohydrates;
@@ -29,15 +29,10 @@
 
         public override void Bake()
         {
-            this.Conditions = Constants.Conditions.Bake;
+            this.Conditions = Conditions.Bake;
             this.Caloricity.Proteins -= Constants.VegetableBakingLossPercentage * this.Caloricity.Proteins;
             this.Caloricity.Fats -= Constants.VegetableBakingLossPercentage * this.Caloricity.Fats;
             this.Caloricity.Carbohydrates -= Constants.VegetableBakingLossPercentage * this.Caloricity.Carbohydrates;
-        }
-
-        public override string ToString()
-        {
-            return $"{base.ToString()} ";
         }
     }
 }

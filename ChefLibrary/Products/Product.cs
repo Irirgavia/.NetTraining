@@ -21,7 +21,6 @@
         public double Weight { get; set; }
 
         public Caloricity Caloricity { get; private set; }
-
          
         public virtual double GetProductCalories()
         {
@@ -30,7 +29,7 @@
 
         public override string ToString()
         {
-            return $"{this.Name}: {this.Weight}g {this.Caloricity}";
+            return $"{this.Name}: {this.Weight}g {this.GetProductCalories()} kcal";
         }
     }
 }
