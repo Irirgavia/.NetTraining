@@ -5,13 +5,13 @@
 
     public class Paragraph
     {
-        public Paragraph(string redLine = "\t")
+        public Paragraph(string redLine = "\n")
         {
             this.Sentences = new List<Sentence>();
             this.RedLine = redLine;
         }
 
-        public Paragraph(List<Sentence> sentences, string redLine = "\t")
+        public Paragraph(List<Sentence> sentences, string redLine = "\n")
         {
             this.Sentences = sentences;
             this.RedLine = redLine;
@@ -21,21 +21,21 @@
 
         public string RedLine { get; set; }
 
-        public void AddSentence(Sentence newSentence)
+        public void Add(Sentence newSentence)
         {
-            Sentences.Add(newSentence);
+            this.Sentences.Add(newSentence);
         }
 
-        public void RemoveSentence(Sentence removedSentence)
+        public void Remove(Sentence removedSentence)
         {
-            Sentences.Remove(removedSentence);
+            this.Sentences.Remove(removedSentence);
         }
 
         public override string ToString()
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append(RedLine);
-            foreach (var sentence in Sentences)
+            var stringBuilder = new StringBuilder();
+            stringBuilder.Append(this.RedLine);
+            foreach (var sentence in this.Sentences)
             {
                 stringBuilder.Append($"{sentence} ");
             }

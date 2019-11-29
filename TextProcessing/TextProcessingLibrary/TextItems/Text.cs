@@ -21,20 +21,20 @@
 
         public List<Paragraph> Paragraphs { get; set; }
 
-        public void AddParagraph(Paragraph newParagraph)
+        public void Add(Paragraph newParagraph)
         {
-            Paragraphs.Add(newParagraph);
+            this.Paragraphs.Add(newParagraph);
         }
 
-        public void RemoveParagraph(Paragraph removedParagraph)
+        public void Remove(Paragraph removedParagraph)
         {
-            Paragraphs.Remove(removedParagraph);
+            this.Paragraphs.Remove(removedParagraph);
         }
 
         public override string ToString()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            foreach (var paragraph in Paragraphs)
+            foreach (var paragraph in this.Paragraphs)
             {
                 stringBuilder.Append($"{paragraph}\n");
             }
