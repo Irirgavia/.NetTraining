@@ -71,4 +71,4 @@ circle..........................3: 8 9
 
 
 Class system for the "TextProcessing".
-![ClassDiagram](https://github.com/Irirgavia/.NetTraining/blob/Task2_TextProcessing/TextProcessingLibrary/Hierarchy/TextProcessingClassDiagram.png)
+![ClassDiagram](https://github.com/Irirgavia/.NetTraining/blob/Task2_TextProcessing/TextProcessing/TextProcessingLibrary/Hierarchy/TextProcessingClassDiagram.png)
