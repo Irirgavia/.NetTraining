@@ -3,15 +3,15 @@
     using System.Collections.Generic;
     using System.Text;
 
-    public class Text
+    public class Text : IText
     {
         public Text(string title = "")
         {
             this.Title = title;
-            this.Paragraphs = new List<Paragraph>();
+            this.Paragraphs = new List<IParagraph>();
         }
 
-        public Text(List<Paragraph> paragraphs, string title = "")
+        public Text(List<IParagraph> paragraphs, string title = "")
         {
             this.Title = title;
             this.Paragraphs = paragraphs;
@@ -19,14 +19,14 @@
 
         public string Title { get; set; }
 
-        public List<Paragraph> Paragraphs { get; set; }
+        public List<IParagraph> Paragraphs { get; set; }
 
-        public void Add(Paragraph newParagraph)
+        public void Add(IParagraph newParagraph)
         {
             this.Paragraphs.Add(newParagraph);
         }
 
-        public void Remove(Paragraph removedParagraph)
+        public void Remove(IParagraph removedParagraph)
         {
             this.Paragraphs.Remove(removedParagraph);
         }

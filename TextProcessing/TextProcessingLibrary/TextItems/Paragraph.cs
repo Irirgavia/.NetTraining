@@ -3,30 +3,32 @@
     using System.Collections.Generic;
     using System.Text;
 
-    public class Paragraph
+    using TextProcessingLibrary.TextItems.SentenceItems;
+
+    public class Paragraph : IParagraph
     {
         public Paragraph(string redLine = "\n")
         {
-            this.Sentences = new List<Sentence>();
+            this.Sentences = new List<ISentence>();
             this.RedLine = redLine;
         }
 
-        public Paragraph(List<Sentence> sentences, string redLine = "\n")
+        public Paragraph(List<ISentence> sentences, string redLine = "\n")
         {
             this.Sentences = sentences;
             this.RedLine = redLine;
         }
 
-        public List<Sentence> Sentences { get; set; }
+        public List<ISentence> Sentences { get; set; }
 
         public string RedLine { get; set; }
 
-        public void Add(Sentence newSentence)
+        public void Add(ISentence newSentence)
         {
             this.Sentences.Add(newSentence);
         }
 
-        public void Remove(Sentence removedSentence)
+        public void Remove(ISentence removedSentence)
         {
             this.Sentences.Remove(removedSentence);
         }

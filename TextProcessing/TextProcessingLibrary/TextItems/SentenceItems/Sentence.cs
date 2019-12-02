@@ -1,12 +1,9 @@
-﻿namespace TextProcessingLibrary.TextItems
+﻿namespace TextProcessingLibrary.TextItems.SentenceItems
 {
-    using System;
     using System.Collections.Generic;
     using System.Text;
 
-    using TextProcessingLibrary.TextItems.SentenceItems;
-
-    public class Sentence
+    public class Sentence : ISentence
     {
         public Sentence(char separator = ' ')
         {
