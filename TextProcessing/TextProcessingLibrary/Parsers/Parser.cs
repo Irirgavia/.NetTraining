@@ -83,6 +83,8 @@
                     }
                 }
                 while (isEndOfFile);
+
+                text.Add(paragraph);
             }
             catch (IOException e)
             {
