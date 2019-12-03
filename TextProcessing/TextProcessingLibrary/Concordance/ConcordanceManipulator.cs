@@ -11,7 +11,7 @@
     {
         private List<ConcordanceWord> ConcordanceWords { get; set; }
 
-        public List<ConcordanceWord> CreateDictionary(Text text)
+        public ConcordanceManipulator GetDictionary(IText text)
         {
             this.ConcordanceWords = new List<ConcordanceWord>();
             var usedWords = new List<string>();
@@ -51,28 +51,38 @@
                 }
             }
 
-            return this.ConcordanceWords;
+            return this;
         }
 
-        public List<ConcordanceWord> SortConcordanceWords()
+        public ConcordanceManipulator SortConcordanceWords()
         {
-            return (from concordanceWord in this.ConcordanceWords
-                   orderby concordanceWord.Word
-                   select concordanceWord).ToList();
+            this.ConcordanceWords = (from concordanceWord in this.ConcordanceWords
+                                    orderby concordanceWord.Word
+                                    select concordanceWord).ToList();
+            return this;
         }
 
         public override string ToString()
         {
             IEnumerable<char> alphabetLetters = new List<char>() { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
 
-            // TODO: division into groups
-            var stringBuilder = new StringBuilder();
+            var stringBuilder = new StringBuilder("count: page(string)\n");
 
-            foreach (var word in this.ConcordanceWords)
+            foreach (var letter in alphabetLetters)
             {
-                stringBuilder.Append($"{word}\n");
+                stringBuilder.Append($"{letter}\n");
+                var words = from word in this.ConcordanceWords 
+                            where word.Word.Length > 0 && word.Word.ToUpper()[0] == letter
+                            select word;
+
+
+                foreach (var word in words)
+                {
+                    stringBuilder.Append($"{word} \n");
+                }
             }
-            return base.ToString();
+
+            return stringBuilder.ToString();
         }
     }
 }

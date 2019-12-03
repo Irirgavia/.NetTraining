@@ -1,8 +1,11 @@
 ﻿namespace TextProcessingLibrary.TextItems
 {
     using System.Collections.Generic;
+    using System.Runtime.Serialization;
     using System.Text;
 
+    [DataContract]
+    [KnownTypeAttribute(typeof(Paragraph))]
     public class Text : IText
     {
         public Text(string title = "")
@@ -17,8 +20,9 @@
             this.Paragraphs = paragraphs;
         }
 
+        [DataMember]
         public string Title { get; set; }
-
+        [DataMember]
         public List<IParagraph> Paragraphs { get; set; }
 
         public void Add(IParagraph newParagraph)

@@ -1,8 +1,12 @@
 ﻿namespace TextProcessingLibrary.TextItems.SentenceItems
 {
+    using System;
     using System.Collections.Generic;
+    using System.Runtime.Serialization;
     using System.Text;
 
+    [DataContract]
+    [KnownTypeAttribute(typeof(SentenceItem))]
     public class Sentence : ISentence
     {
         public Sentence(char separator = ' ')
@@ -16,9 +20,11 @@
             this.SentenceItems = words;
             this.Separator = separator;
         }
-        
+
+        [DataMember]
         public List<ISentenceItem> SentenceItems { get; set; }
 
+        [DataMember]
         public char Separator { get; set; }
 
         public SentenceType GetSentenceType()

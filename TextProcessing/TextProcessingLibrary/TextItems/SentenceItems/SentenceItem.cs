@@ -1,8 +1,12 @@
 ﻿namespace TextProcessingLibrary.TextItems.SentenceItems
 {
     using System.Collections.Generic;
+    using System.Runtime.Serialization;
     using System.Text;
 
+    [DataContract]
+    [KnownTypeAttribute(typeof(Word))]
+    [KnownTypeAttribute(typeof(PunctuationMark))]
     public class SentenceItem : ISentenceItem
     {
         public SentenceItem(List<char> symbols)
@@ -10,6 +14,7 @@
             this.Symbols = symbols;
         }
 
+        [DataMember]
         public List<char> Symbols { get; set; }
 
         public void Add(char symbol)

@@ -1,10 +1,13 @@
 ﻿namespace TextProcessingLibrary.TextItems
 {
     using System.Collections.Generic;
+    using System.Runtime.Serialization;
     using System.Text;
 
     using TextProcessingLibrary.TextItems.SentenceItems;
 
+    [DataContract]
+    [KnownTypeAttribute(typeof(Sentence))]
     public class Paragraph : IParagraph
     {
         public Paragraph(string redLine = "\n")
@@ -19,8 +22,10 @@
             this.RedLine = redLine;
         }
 
+        [DataMember]
         public List<ISentence> Sentences { get; set; }
 
+        [DataMember]
         public string RedLine { get; set; }
 
         public void Add(ISentence newSentence)

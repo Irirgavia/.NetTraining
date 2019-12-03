@@ -27,10 +27,13 @@
         public override string ToString()
         {
             var stringBuilder = new StringBuilder(this.Word);
-            stringBuilder.Append($"{this.EntriesCounts}:");
+            stringBuilder.Append($"  {this.EntriesCounts}:");
             foreach (var locationLine in this.LocationLines)
             {
-                stringBuilder.Append($" {locationLine},");
+                var page = locationLine / Constants.LinesCountsPerPage;
+                var str = locationLine % Constants.LinesCountsPerPage;
+
+                stringBuilder.Append($" {page}({str}),");
             }
 
             return stringBuilder.ToString().TrimEnd(',');

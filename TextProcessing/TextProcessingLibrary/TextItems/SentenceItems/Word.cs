@@ -1,9 +1,9 @@
 ﻿namespace TextProcessingLibrary.TextItems.SentenceItems
 {
-    using System;
     using System.Collections.Generic;
-    using System.Text;
+    using System.Runtime.Serialization;
 
+    [DataContract]
     public class Word : SentenceItem
     {
         public Word(List<char> symbols, int locationLine = 1)
@@ -13,6 +13,7 @@
             this.LocationLine = locationLine;
         }
 
+        [DataMember]
         public int LocationLine { get; set; }
     }
 }

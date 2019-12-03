@@ -6,11 +6,15 @@
     using System.Linq;
     using System.Text;
 
+    using NLog;
+
     using TextProcessingLibrary.TextItems;
     using TextProcessingLibrary.TextItems.SentenceItems;
 
     public class Parser : IDisposable
     {
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         private TextReader TextReader { get; set; }
 
         public IText CreateText(TextReader textReader, string textTitle)
@@ -79,7 +83,7 @@
             }
             catch (IOException e)
             {
-                // TODO: exception handling
+                this.logger.Error(e.Message);
             }
             finally
             {
@@ -94,10 +98,8 @@
             var lineWord = new StringBuilder();
             var sentence = new Sentence();
 
-            for (int i = 0; i < stringWithSentence.Length; i++)
+            foreach (var currentSymbol in stringWithSentence)
             {
-                var currentSymbol = (char)stringWithSentence[i];
-
                 switch (currentSymbol)
                 {
                     case '!':

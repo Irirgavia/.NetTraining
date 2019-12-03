@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="TextProcessingLibrary.Concordance.ConcordanceManipulator">
-    <Position X="9.25" Y="1" Width="2" />
+    <Position X="8" Y="3" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAABAAEAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAEACAAAAAEAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
       <FileName>Concordance\ConcordanceManipulator.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -11,63 +11,67 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="TextProcessingLibrary.Concordance.ConcordanceWord">
-    <Position X="9.25" Y="3.25" Width="1.75" />
+    <Position X="8.25" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAEAAAAAAAAAQAAEAAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
       <FileName>Concordance\ConcordanceWord.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TextProcessingLibrary.Constants">
-    <Position X="0.5" Y="5.25" Width="1.75" />
+    <Position X="9.75" Y="6.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Constants.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TextProcessingLibrary.Parsers.Parser" BaseTypeListCollapsed="true">
-    <Position X="7.75" Y="0.75" Width="1.25" />
+  <Class Name="TextProcessingLibrary.TextManipulator">
+    <Position X="8.25" Y="4.75" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAgAAAAAACAAAQAAAA=</HashCode>
+      <FileName>TextManipulator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TextProcessingLibrary.Parsers.Parser" BaseTypeListCollapsed="true">
+    <Position X="8" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAACEAAAAAAAAAAAAAAAIAAAAAIAAAA=</HashCode>
       <FileName>Parsers\Parser.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="TextProcessingLibrary.TextItems.Paragraph">
-    <Position X="6.25" Y="0.5" Width="1.25" />
+  <Class Name="TextProcessingLibrary.TextItems.Paragraph" BaseTypeListCollapsed="true">
+    <Position X="4.5" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgIAAAAAAAAAAAAEAAAABAAAAAAAACAAAAAAAAAAAAA=</HashCode>
       <FileName>TextItems\Paragraph.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
+    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="TextProcessingLibrary.TextItems.SentenceItems.Sentence">
-    <Position X="3.75" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAEAAAABAAAAAAAARAAAAAAAAIAAAA=</HashCode>
-      <FileName>TextItems\SentenceItems\Sentence.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsCollectionAssociation>
-      <Property Name="SentenceItems" />
-    </ShowAsCollectionAssociation>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="TextProcessingLibrary.TextItems.Text">
-    <Position X="5.75" Y="3.25" Width="1.75" />
+  <Class Name="TextProcessingLibrary.TextItems.Text" BaseTypeListCollapsed="true">
+    <Position X="6.25" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAAAEAEAAAABAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
       <FileName>TextItems\Text.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
+    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="TextProcessingLibrary.TextItems.SentenceItems.PunctuationMark">
-    <Position X="0.5" Y="3.25" Width="1.5" />
+    <Position X="2.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>TextItems\SentenceItems\PunctuationMark.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="TextProcessingLibrary.TextItems.SentenceItems.Sentence" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAEAAAABAAAAAAAARAAAAAAAAIAAAA=</HashCode>
+      <FileName>TextItems\SentenceItems\Sentence.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
   <Class Name="TextProcessingLibrary.TextItems.SentenceItems.SentenceItem">
-    <Position X="1.25" Y="0.5" Width="1.5" />
+    <Position X="1.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAABAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>TextItems\SentenceItems\SentenceItem.cs</FileName>
@@ -75,21 +79,58 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="TextProcessingLibrary.TextItems.SentenceItems.Word">
-    <Position X="2.25" Y="3.25" Width="1.5" />
+    <Position X="0.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>TextItems\SentenceItems\Word.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="TextProcessingLibrary.TextItems.SentenceItems.ISentenceItem">
-    <Position X="4" Y="3.25" Width="1.5" />
+  <Class Name="TextProcessingLibrary.JsonHelper">
+    <Position X="10.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>JsonHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="TextProcessingLibrary.TextItems.IParagraph">
+    <Position X="6.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgIAAAAAAAAAAAAEAAAABAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>TextItems\IParagraph.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Sentences" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Interface Name="TextProcessingLibrary.TextItems.IText">
+    <Position X="6" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAEAEAAAABAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TextItems\IText.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Paragraphs" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Interface Name="TextProcessingLibrary.TextItems.SentenceItems.ISentence">
+    <Position X="3.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAEAAAABAAAAAAAARAAAAAAAAIAAAA=</HashCode>
+      <FileName>TextItems\SentenceItems\ISentence.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="SentenceItems" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Interface Name="TextProcessingLibrary.TextItems.SentenceItems.ISentenceItem">
+    <Position X="4.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAABAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>TextItems\SentenceItems\ISentenceItem.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="TextProcessingLibrary.TextItems.SentenceType">
-    <Position X="4" Y="5" Width="1.25" />
+    <Position X="1" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
       <FileName>TextItems\SentenceItems\SentenceType.cs</FileName>
