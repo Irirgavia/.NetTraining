@@ -34,17 +34,13 @@
 
                         if (wordIndex != -1)
                         {
-                            if (this.ConcordanceWords[wordIndex].LocationLines.Exists(x => x > 1))
-                            {
-                                this.ConcordanceWords[wordIndex].EntriesCounts++;
-                                continue;
-                            }
-
                             this.ConcordanceWords[wordIndex].LocationLines.Add(word.LocationLine);
+                            this.ConcordanceWords[wordIndex].EntriesCounts++;
                         }
                         else
                         {
                             this.ConcordanceWords.Add(concordanceWord);
+                            this.ConcordanceWords[this.ConcordanceWords.Count - 1].EntriesCounts++;
                             usedWords.Add(concordanceWord.Word);
                         }
                     }

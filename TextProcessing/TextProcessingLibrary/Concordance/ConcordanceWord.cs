@@ -10,6 +10,7 @@
         {
             this.Word = word;
             this.LocationLines = new List<int>();
+            this.EntriesCounts = 0;
         }
 
         public ConcordanceWord(string word, List<int> locationLines)
