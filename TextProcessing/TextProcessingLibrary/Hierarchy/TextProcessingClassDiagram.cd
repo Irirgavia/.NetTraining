@@ -18,7 +18,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="TextProcessingLibrary.Constants">
-    <Position X="9.75" Y="6.75" Width="1.75" />
+    <Position X="10.25" Y="1.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Constants.cs</FileName>
@@ -90,6 +90,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>JsonHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TextProcessingLibrary.Writer">
+    <Position X="10.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAEAAAAAACAAAAAA=</HashCode>
+      <FileName>Writer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="TextProcessingLibrary.TextItems.IParagraph">
