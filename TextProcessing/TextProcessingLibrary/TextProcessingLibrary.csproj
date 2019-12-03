@@ -97,6 +97,7 @@
   <ItemGroup>
     <Compile Include="Concordance\ConcordanceManipulator.cs" />
     <Compile Include="Concordance\ConcordanceWord.cs" />
+    <Compile Include="Writer.cs" />
     <Compile Include="JsonHelper.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Parsers\Parser.cs" />

@@ -68,7 +68,7 @@
             this.textBox.Multiline = true;
             this.textBox.Name = "textBox";
             this.textBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox.Size = new System.Drawing.Size(571, 270);
+            this.textBox.Size = new System.Drawing.Size(571, 295);
             this.textBox.TabIndex = 3;
             // 
             // labelErrorChooseFile
@@ -84,7 +84,7 @@
             // 
             // buttonSortSentences
             // 
-            this.buttonSortSentences.Location = new System.Drawing.Point(625, 220);
+            this.buttonSortSentences.Location = new System.Drawing.Point(625, 185);
             this.buttonSortSentences.Name = "buttonSortSentences";
             this.buttonSortSentences.Size = new System.Drawing.Size(123, 52);
             this.buttonSortSentences.TabIndex = 5;
@@ -94,7 +94,7 @@
             // 
             // buttonConcordance
             // 
-            this.buttonConcordance.Location = new System.Drawing.Point(625, 174);
+            this.buttonConcordance.Location = new System.Drawing.Point(625, 268);
             this.buttonConcordance.Name = "buttonConcordance";
             this.buttonConcordance.Size = new System.Drawing.Size(123, 40);
             this.buttonConcordance.TabIndex = 6;
@@ -104,7 +104,7 @@
             // 
             // buttonSaveText
             // 
-            this.buttonSaveText.Location = new System.Drawing.Point(625, 128);
+            this.buttonSaveText.Location = new System.Drawing.Point(625, 139);
             this.buttonSaveText.Name = "buttonSaveText";
             this.buttonSaveText.Size = new System.Drawing.Size(123, 40);
             this.buttonSaveText.TabIndex = 7;
@@ -117,7 +117,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(776, 316);
+            this.ClientSize = new System.Drawing.Size(776, 341);
             this.Controls.Add(this.buttonSaveText);
             this.Controls.Add(this.buttonConcordance);
             this.Controls.Add(this.buttonSortSentences);

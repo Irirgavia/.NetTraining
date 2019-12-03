@@ -6,6 +6,8 @@
 
     using NLog;
 
+    using TextProcessing.Configuration;
+
     using TextProcessingLibrary;
     using TextProcessingLibrary.Concordance;
     using TextProcessingLibrary.Parsers;
@@ -14,6 +16,8 @@
     public partial class StartWindow : Form
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
+
+        private Section section;
 
         private IText text;
 
@@ -24,6 +28,8 @@
             this.buttonSaveText.Enabled = false;
             this.buttonConcordance.Enabled = false;
             this.buttonSortSentences.Enabled = false;
+
+            this.section = new Section();
         }
 
         private void buttonChooseFileTxt_Click(object sender, EventArgs e)
@@ -55,7 +61,7 @@
 
         private void buttonSaveText_Click(object sender, EventArgs e)
         {
-            var path = $"{Environment.CurrentDirectory}\\savedText.json";
+            var path = this.section.Configure().textFile;
 
             JsonHelper.Serialize(this.text, path, typeof(Text));
         }
@@ -68,6 +74,9 @@
             {
                 this.textBox.AppendText($"{word}\n");
             }
+
+            var writer = new Writer(this.section.Configure().concordanceFile);
+            writer.WriteFile(concordance.ToString());
         }
 
         private void buttonSortSentences_Click(object sender, EventArgs e)

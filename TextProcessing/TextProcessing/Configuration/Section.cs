@@ -3,15 +3,19 @@
     using System.Configuration;
     using System.IO;
 
+    using NLog;
+
     public class Section : ConfigurationSection
     {
         [ConfigurationProperty("Files")]
         public FilesCollection FileItems => (FilesCollection)base["Files"];
 
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         public (string concordanceFile, string textFile) Configure()
         {
-            string concordanceFilePath = string.Empty;
-            string textFilePath = string.Empty;
+            var concordanceFilePath = string.Empty;
+            var textFilePath = string.Empty;
 
             var section = (Section)ConfigurationManager.GetSection("StartupFiles");
             if (section != null)
@@ -27,14 +31,14 @@
                 }
             }
 
-            if (File.Exists(concordanceFilePath))
+            if (!File.Exists(concordanceFilePath))
             {
-                File.Delete(concordanceFilePath);
+                File.Create(concordanceFilePath);
             }
 
             if (!File.Exists(textFilePath))
             {
-                throw new FileNotFoundException("File to read is not found.");
+                this.logger.Warn("File to read is not found.");
             }
 
             return (concordanceFilePath, textFilePath);
