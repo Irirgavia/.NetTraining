@@ -48,13 +48,11 @@
             {
                 if (sentenceItem.Symbols.Count != wordLength)
                 {
-                    stringBuilder.Append(sentenceItem.Symbols.ToString());
-                    stringBuilder.Append(" ");
+                    stringBuilder.Append(sentenceItem);
                     continue;
                 }
 
-                stringBuilder.Append(substring);
-                stringBuilder.Append(" ");
+                stringBuilder.Append($"{substring} ");
             }
 
             var parser = new Parser();

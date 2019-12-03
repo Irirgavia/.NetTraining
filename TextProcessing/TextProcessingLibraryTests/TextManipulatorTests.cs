@@ -139,7 +139,7 @@ namespace TextProcessingLibrary.Tests
             var sentence = new Sentence(
                 new List<ISentenceItem>()
                     {
-                        new Word(new List<char>() { 'a' }),
+                        new Word(new List<char>() { 'a', 'a', 'a' }),
                         new Word(new List<char>() { 'y', 'y' }),
                         new PunctuationMark(new List<char>() { '.' })
                     },
@@ -147,7 +147,7 @@ namespace TextProcessingLibrary.Tests
 
             Assert.AreEqual(
                 expectedSentence.ToString(),
-                TextProcessingLibrary.TextManipulator.ReplaceWordsWithSubstring(sentence, 1, "xxx xxx").ToString());
+                TextProcessingLibrary.TextManipulator.ReplaceWordsWithSubstring(sentence, 3, "xxx xxx").ToString());
         }
     }
 }

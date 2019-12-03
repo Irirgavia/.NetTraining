@@ -62,6 +62,9 @@
                             sentence = new Sentence();
                             continue;
                         case ' ':
+                            sentence.Add(new Word(lineWord.ToString().ToList(), countOfString));
+                            lineWord.Clear();
+                            continue;
                         case '"':
                         case '`':
                         case ';':
@@ -76,7 +79,7 @@
                             continue;
                         default:
                             lineWord.Append(currentSymbol);
-                            break;
+                            continue;
                     }
                 }
                 while (isEndOfFile);
@@ -108,8 +111,11 @@
                         sentence.Add(new Word(lineWord.ToString().ToList(), countOfString));
                         sentence.Add(new PunctuationMark(new List<char>() { currentSymbol }));
                         lineWord.Clear();
-                        return sentence;
+                        continue;
                     case ' ':
+                        sentence.Add(new Word(lineWord.ToString().ToList(), countOfString));
+                        lineWord.Clear();
+                        continue;
                     case '"':
                     case '`':
                     case ';':
@@ -124,7 +130,7 @@
                         continue;
                     default:
                         lineWord.Append(currentSymbol);
-                        break;
+                        continue;
                 }
             }
 
