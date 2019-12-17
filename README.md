@@ -23,5 +23,5 @@
 | 15 | Биллинговая система: учет звонков, фильтрация, агрегация |
 | 15 | разработка UI не требуется. достаточно консольного приложения, которое должно демонстрировать типичные сценарии использования объектов чтобы моделировать деятельность АТС и биллинговой системы (соединение абонентов с учетом состояния порта, заключение договора, подключение/отключение терминала, вывод истории звонков для каждого абонента) |
 
-### Class system for the "Chef Library".
-![ClassDiagram](link)
+### Class system for the "ATS".
+![ClassDiagram](https://github.com/Irirgavia/.NetTraining/blob/Task3_AutomaticTelephoneExchange/ATS/ATSLibrary/Description/ATSClassDiagram.jpg)
