@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ATSLibrary.Agreement">
+    <Position X="3" Y="6.5" Width="1.5" />
+    <AssociationLine Name="Number" Type="ATSLibrary.Number" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.5" Y="6.594" />
+        <Point X="4.875" Y="6.594" />
+        <Point X="4.875" Y="5.997" />
+        <Point X="5.5" Y="5.997" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Histories" Type="ATSLibrary.History" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.125" Y="6.5" />
+        <Point X="4.125" Y="5.725" />
+        <Point X="4.5" Y="5.725" />
+        <Point X="4.5" Y="3.997" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.408" Y="0.303" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACQABAABAgAAAAAEAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Agreement.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Number" />
+      <Property Name="Tariff" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Histories" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ATSLibrary.BillingSystem">
+    <Position X="5.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAEAACgAAAAAAAAAAAAAAAAAAAEAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>BillingSystem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Stations" />
+      <Property Name="Users" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ATSLibrary.Number">
+    <Position X="5.5" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Number.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATSLibrary.Tariff">
+    <Position X="2.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAACAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tariff.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATSLibrary.User">
+    <Position X="2.75" Y="9" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACEAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAg=</HashCode>
+      <FileName>User.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Agreements" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ATSLibrary.AS.Port">
+    <Position X="11.5" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACQAAAAAAAYAAAAAAIgAAAAAAAAAAAAAIEAAAAQCA=</HashCode>
+      <FileName>AS\Port.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PortState" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ATSLibrary.AS.Station">
+    <Position X="8" Y="6.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>IAAiEAAAQAQABAAABAAAAYIAABAAkAAAAkAACAAAAIA=</HashCode>
+      <FileName>AS\Station.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Ports" />
+      <Property Name="Terminals" />
+      <Property Name="ActiveCallTimers" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ATSLibrary.AS.Terminal">
+    <Position X="5.5" Y="6.75" Width="1.5" />
+    <AssociationLine Name="Number" Type="ATSLibrary.Number" FixedFromPoint="true">
+      <Path>
+        <Point X="6.5" Y="6.75" />
+        <Point X="6.5" Y="5.997" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.11" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACQAAAAAAAQAAAAEAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>AS\Terminal.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Number" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ATSLibrary.AS.Request">
+    <Position X="9.5" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>AS\Request.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ATSLibrary.AS.CallTimer">
+    <Position X="7.5" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACQAAAACACAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>AS\CallTimer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Call" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ATSLibrary.History">
+    <Position X="4.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAQAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>History.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CallTimer" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ATSLibrary.HistoryManipulator">
+    <Position X="1.75" Y="2.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAFAAAAAAEABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HistoryManipulator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATSLibrary.AS.Response">
+    <Position X="11.5" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>AS\Response.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="ATSLibrary.AS.ICall">
+    <Position X="10" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>AS\ICall.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="ATSLibrary.AS.PortState">
+    <Position X="11.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>AS\PortState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
