@@ -7,6 +7,14 @@
             Role = "User";
         }
 
+        public User(string lastName, string firstName = "")
+        {
+            UserName = "userName";
+            FirstName = firstName;
+            LastName = lastName;
+            Role = "User";
+        }
+
         public User(string userName, string firstName, string lastName, string email)
         {
             UserName = userName;

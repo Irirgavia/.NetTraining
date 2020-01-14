@@ -1,6 +1,6 @@
 ﻿namespace BLEntity
 {
-    public class Product
+    public class Product : IIdentifier
     {
         public Product()
         {

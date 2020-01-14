@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class Sale
+    public class Sale : IIdentifier
     {
         public Sale()
         {

@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class RecordFile
+    public class RecordFile : IIdentifier
     {
         public RecordFile()
         {
