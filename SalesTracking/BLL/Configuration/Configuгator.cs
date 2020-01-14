@@ -1,33 +1,32 @@
 ﻿namespace BLL.Configuration
 {
+    using System;
+
     public class Configuгator
     {
-        public (string InitialFolder, string ProcessedFolder, string FaultedFolder) Configure()
+        public SaleProcessingFolder Configure()
         {
-            string initialFolder = "";
-            string processedFolder = "";
-            string faultedFolder = "";
-
+            var saleProcessingFolder = new SaleProcessingFolder();
             var section = (StartupFoldersConfigSection)System.Configuration.ConfigurationManager.GetSection("StartupFolders");
             if (section != null)
             {
                 if (section.FolderItems[Constants.InitialFolder] != null)
                 {
-                    initialFolder = section.FolderItems[Constants.InitialFolder];
+                    saleProcessingFolder.InitialFolder = section.FolderItems[Constants.InitialFolder];
                 }
 
                 if (section.FolderItems[Constants.ProcessedFolder] != null)
                 {
-                    processedFolder = section.FolderItems[Constants.ProcessedFolder];
+                    saleProcessingFolder.ProcessedFolder = section.FolderItems[Constants.ProcessedFolder];
                 }
 
                 if (section.FolderItems[Constants.FaultedFolder] != null)
                 {
-                    faultedFolder = section.FolderItems[Constants.FaultedFolder];
+                    saleProcessingFolder.FaultedFolder = section.FolderItems[Constants.FaultedFolder];
                 }
             }
 
-            return (initialFolder, processedFolder, faultedFolder);
+            return saleProcessingFolder;
         }
     }
 }

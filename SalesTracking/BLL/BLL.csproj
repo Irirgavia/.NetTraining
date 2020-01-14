@@ -53,6 +53,7 @@
     <Compile Include="Configuration\Constants.cs" />
     <Compile Include="Configuration\FolderElement.cs" />
     <Compile Include="Configuration\FoldersCollection.cs" />
+    <Compile Include="Configuration\SaleProcessingFolder.cs" />
     <Compile Include="Configuration\StartupFoldersConfigSection.cs" />
     <Compile Include="FolderTrackingWatcher.cs" />
     <Compile Include="Parser\CSVParser.cs" />
