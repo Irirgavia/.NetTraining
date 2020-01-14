@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-
-namespace BLL.Parser
+﻿namespace BLL.Parser
 {
     using System.Collections.Generic;
     using System.IO;
