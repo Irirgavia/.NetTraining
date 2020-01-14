@@ -11,17 +11,19 @@
             var section = (StartupFoldersConfigSection)System.Configuration.ConfigurationManager.GetSection("StartupFolders");
             if (section != null)
             {
-                if (section.FolderItems["InitialFolder"] != null)
+                if (section.FolderItems[Constants.InitialFolder] != null)
                 {
-                    initialFolder = section.FolderItems["InitialFolder"];
+                    initialFolder = section.FolderItems[Constants.InitialFolder];
                 }
-                if (section.FolderItems["ProcessedFolder"] != null)
+
+                if (section.FolderItems[Constants.ProcessedFolder] != null)
                 {
-                    processedFolder = section.FolderItems["ProcessedFolder"];
+                    processedFolder = section.FolderItems[Constants.ProcessedFolder];
                 }
-                if (section.FolderItems["FaultedFolder"] != null)
+
+                if (section.FolderItems[Constants.FaultedFolder] != null)
                 {
-                    faultedFolder = section.FolderItems["FaultedFolder"];
+                    faultedFolder = section.FolderItems[Constants.FaultedFolder];
                 }
             }
 
