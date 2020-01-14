@@ -5,36 +5,37 @@
     using System.IO;
     using System.Threading.Tasks;
 
-    using BLL.Writer;
+    using BLL.Parser;
 
-    public class FolderTrackingWatcher
+    using NLog;
+
+    public class FolderTrackingWatcher : IDisposable
     {
-        public FolderTrackingWatcher(IWriter logger, string initialFolder, string processedFolder, string faultedFolder)
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
+
+        public FolderTrackingWatcher(string initialFolder, string processedFolder, string faultedFolder)
         {
-            Logger = logger;
             InitialDirectory = initialFolder;
             ProcessedDirectory = processedFolder;
             FaultedDirectory = faultedFolder;
 
             CreateIfNotExistsFolders(initialFolder, processedFolder, faultedFolder);
 
-            Service = new SellingService(new CSVParser());
+            this.SalesService = new SalesService(new CSVParser());
 
             Watcher = new FileSystemWatcher(initialFolder);
             Watcher.Created += WatcherCreated;
         }
 
-        FileSystemWatcher Watcher { get; }
+        public string InitialDirectory { get; }
 
-        ISellingService Service { get; }
+        public string ProcessedDirectory { get; }
 
-        IWriter Logger { get; }
+        private FileSystemWatcher Watcher { get; }
 
-        string InitialDirectory { get; }
+        private SalesService SalesService { get; }
 
-        string ProcessedDirectory { get; }
-
-        string FaultedDirectory { get; }
+        private string FaultedDirectory { get; }
 
         public void Start()
         {
@@ -58,10 +59,7 @@
             if (disposing)
             {
                 Watcher?.Dispose();
-                if (Service != null)
-                {
-                    Service.Dispose();
-                }
+                this.SalesService?.Dispose();
             }
         }
 
@@ -75,7 +73,7 @@
         {
             try
             {
-                Task<List<int>> task = Task.Factory.StartNew(() => Service.CreateSellings(filePath));
+                Task<List<int>> task = Task.Factory.StartNew(() => this.SalesService.CreateSales(filePath));
                 if (task.Exception == null)
                 {
                     task.ContinueWith(t => { AfterProcessFile(filePath, t.Result); });
@@ -84,15 +82,15 @@
                 {
                     foreach (var ex in task.Exception.InnerExceptions)
                     {
-                        Logger.WriteLine(ex.Message);
+                        this.logger.Error(ex.Message);
                     }
-
+ 
                     task.ContinueWith(t => { AfterProcessFile(filePath, new List<int>() { -1 }); });
                 }
             }
             catch (Exception ex)
             {
-                Logger.WriteLine(ex.Message);
+                this.logger.Error(ex.Message);
             }
         }
 
@@ -102,16 +100,16 @@
             {
                 var fileName = Path.GetFileName(filePath);
                 File.Move(filePath, Path.Combine(ProcessedDirectory, fileName));
-                Logger.WriteLine($"File {filePath} parsed successfully.");
+                this.logger.Info($"File {filePath} parsed successfully.");
             }
             else
             {
                 var fileName = Path.GetFileName(filePath);
                 File.Move(filePath, Path.Combine(FaultedDirectory, fileName));
-                Logger.WriteLine($"File {filePath} parsed with errors. Number of faulted strings are ");
+                this.logger.Info($"File {filePath} parsed with errors. Number of faulted strings are ");
                 foreach (var faultLine in faultedLines)
                 {
-                    Logger.Write($"{faultLine} ");
+                    this.logger.Info($"{faultLine} ");
                 }
             }
         }
