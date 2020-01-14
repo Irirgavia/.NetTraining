@@ -15,8 +15,7 @@
     public class SalesService : IDisposable
     {
         private readonly object productLocker = new object();
-        private readonly object managerLocker = new object();
-        private readonly object clientLocker = new object();
+        private readonly object userLocker = new object();
 
         public SalesService(ICSVParser parser)
         {
@@ -30,57 +29,31 @@
 
         public List<int> CreateSales(string fileName)
         {
-            List<int> faultedStrings = new List<int>();
-            int i = 0;
-            if (fileName.EndsWith(".csv"))
+            var faultedStrings = new List<int>();
+            if (!fileName.EndsWith(".csv"))
             {
-                var sourceInfo = this.GetRecordFile(fileName, Repository.UserRepository);
-                using (StreamReader sw = new StreamReader(fileName))
+                return faultedStrings;
+            }
+
+            var recordFile = GetRecordFile(fileName, Repository.UserRepository);
+            using (var streamReader = new StreamReader(fileName))
+            {
+                int i = 0;
+                foreach (var items in Parser.ParseCSV(streamReader))
                 {
-                    var components = Parser.ParseCSV(sw);
-                    foreach (var component in components)
+                    try
                     {
-                        try
-                        {
-                            var selling = this.CreateSale(component, sourceInfo);
-                            Repository.SaleRepository.Create(selling);
-                            i++;
-                        }
-                        catch (FormatException)
-                        {
-                            faultedStrings.Add(i);
-                        }
+                        Repository.SaleRepository.Create(CreateSale(items, recordFile));
+                        i++;
+                    }
+                    catch (FormatException)
+                    {
+                        faultedStrings.Add(i);
                     }
                 }
             }
 
             return faultedStrings;
-        }
-
-        public RecordFile GetRecordFile(string fileName, IUserRepository repository)
-        {
-            try
-            {
-                var parts = fileName.Split(new char[] { '\\', })
-                    .ToList().Last().Split(new char[] { '_', '.' });
-                var manager = new User(parts[0]);
-                int managerId;
-                lock (managerLocker)
-                {
-                    managerId = repository.CreateOrUpdate(manager, x => x.LastName == manager.LastName);
-                }
-
-                var date = new DateTime(
-                    int.Parse(parts[1].Substring(4, 4)), 
-                    int.Parse(parts[1].Substring(2, 2)), 
-                    int.Parse(parts[1].Substring(0, 2)));
-
-                return new RecordFile(fileName, managerId, date);
-            }
-            catch
-            {
-                throw new FormatException("File name has wrong format.");
-            }
         }
 
         public void Dispose()
@@ -97,39 +70,63 @@
             }
         }
 
-        private Sale CreateSale(List<string> components, RecordFile recordFile)
+        private RecordFile GetRecordFile(string fileName, IUserRepository repository)
+        {
+            try
+            {
+                var recordInfo = fileName
+                    .Split(new char[] { '\\', }).ToList().Last()
+                    .Split(new char[] { '_', '.' });
+                var user = new User(recordInfo[0]);
+                int userId;
+                lock (userLocker)
+                {
+                    userId = repository.CreateOrUpdate(user, x => x.LastName == user.LastName);
+                }
+
+                var date = new DateTime(
+                    int.Parse(recordInfo[1].Substring(4, 4)),
+                    int.Parse(recordInfo[1].Substring(2, 2)),
+                    int.Parse(recordInfo[1].Substring(0, 2)));
+
+                return new RecordFile(fileName, userId, date);
+            }
+            catch
+            {
+                throw new FormatException("Invalid file format.");
+            }
+        }
+
+        private Sale CreateSale(List<string> saleItems, RecordFile recordFile)
         {
             Repository.RecordFileRepository.Create(recordFile);
-            DateTime date;
-            decimal cost;
-            if (!DateTime.TryParse(components[0], out date))
+
+            if (!DateTime.TryParse(saleItems[0], out var date))
             {
-                throw new FormatException("Date component has invalid format!");
-            }
-            if (!decimal.TryParse(components[3], out cost))
-            {
-                throw new FormatException("Cost component has invalid format!");
+                throw new FormatException("Invalid date format.");
             }
 
-            // Get user
-            var names = components[1].Split(new char[] { ' ' });
-            var user = names.Length > 1 ? new User(names[0], names[1]) : new User("", names[1]);
-
-            int clientId;
-            lock (clientLocker)
+            if (!decimal.TryParse(saleItems[3], out var cost))
             {
-                clientId = Repository.UserRepository.CreateOrUpdate(user, x => x.LastName == user.LastName);
+                throw new FormatException("Invalid cost format.");
             }
 
-            // Get Product
-            var product = new Product(components[2]);
+            var userName = saleItems[1].Split(new char[] { ' ' });
+            var user = new User(userName[0], userName[1]);
+            int userId;
+            lock (userLocker)
+            {
+                userId = Repository.UserRepository.CreateOrUpdate(user, x => x.LastName == user.LastName);
+            }
+
+            var product = new Product(saleItems[2]);
             int productId;
             lock (productLocker)
             {
                 productId = Repository.ProductRepository.CreateOrUpdate(product, x => x.Name == product.Name);
             }
 
-            return new Sale(date, clientId, productId, cost, recordFile.Id);
+            return new Sale(date, userId, productId, cost, recordFile.Id);
         }
     }
 }
