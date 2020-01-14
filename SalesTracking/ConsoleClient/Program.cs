@@ -10,13 +10,7 @@
     {
         public static void Main(string[] args)
         {
-            var manager = new Configuгator();
-            var folders = manager.Configure();
-
-            FolderTrackingWatcher watcher = new FolderTrackingWatcher(
-                folders.InitialFolder,
-                folders.ProcessedFolder,
-                folders.FaultedFolder);
+            var watcher = new FolderTrackingWatcher(new Configuгator().Configure());
 
             Task task = Task.Factory.StartNew(() => watcher.Start());
 

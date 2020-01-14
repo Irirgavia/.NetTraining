@@ -22,14 +22,8 @@
 
         protected override void OnStart(string[] args)
         {
-            var manager = new Configuгator();
-            var folders = manager.Configure();
-
-            Watcher = new FolderTrackingWatcher( 
-                folders.InitialFolder,
-                folders.ProcessedFolder,
-                folders.FaultedFolder);
-            Task task = Task.Factory.StartNew(() => Watcher.Start());
+            Watcher = new FolderTrackingWatcher(new Configuгator().Configure());
+            var task = Task.Factory.StartNew(() => Watcher.Start());
         }
 
         protected override void OnStop()

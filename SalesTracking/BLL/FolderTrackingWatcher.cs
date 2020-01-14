@@ -5,6 +5,7 @@
     using System.IO;
     using System.Threading.Tasks;
 
+    using BLL.Configuration;
     using BLL.Parser;
 
     using NLog;
@@ -13,33 +14,25 @@
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        public FolderTrackingWatcher(string initialFolder, string processedFolder, string faultedFolder)
+        public FolderTrackingWatcher(SaleProcessingFolders saleProcessingFolders)
         {
-            InitialDirectory = initialFolder;
-            ProcessedDirectory = processedFolder;
-            FaultedDirectory = faultedFolder;
+            SaleProcessingFolders = saleProcessingFolders;
+            CreateIfNotExistsFolders(SaleProcessingFolders);
+            SalesService = new SalesService(new CSVParser());
 
-            CreateIfNotExistsFolders(initialFolder, processedFolder, faultedFolder);
-
-            this.SalesService = new SalesService(new CSVParser());
-
-            Watcher = new FileSystemWatcher(initialFolder);
-            Watcher.Created += WatcherCreated;
+            Watcher = new FileSystemWatcher(SaleProcessingFolders.InitialFolder);
+            Watcher.Created += AddWatcher;
         }
 
-        public string InitialDirectory { get; }
-
-        public string ProcessedDirectory { get; }
+        private SaleProcessingFolders SaleProcessingFolders { get; }
 
         private FileSystemWatcher Watcher { get; }
 
         private SalesService SalesService { get; }
 
-        private string FaultedDirectory { get; }
-
         public void Start()
         {
-            ProcessInitialFiles();
+            this.FilesPreprocessing();
             Watcher.EnableRaisingEvents = true;
         }
 
@@ -59,85 +52,94 @@
             if (disposing)
             {
                 Watcher?.Dispose();
-                this.SalesService?.Dispose();
+                SalesService?.Dispose();
             }
         }
 
-        private void WatcherCreated(object sender, FileSystemEventArgs e)
+        private void CreateIfNotExistsFolders(SaleProcessingFolders saleProcessingFolders)
         {
-            string filePath = e.FullPath;
-            ProcessFile(filePath);
+            if (!Directory.Exists(saleProcessingFolders.InitialFolder))
+            {
+                Directory.CreateDirectory(saleProcessingFolders.InitialFolder);
+            }
+
+            if (!Directory.Exists(saleProcessingFolders.ProcessedFolder))
+            {
+                Directory.CreateDirectory(saleProcessingFolders.ProcessedFolder);
+            }
+
+            if (!Directory.Exists(saleProcessingFolders.FaultedFolder))
+            {
+                Directory.CreateDirectory(saleProcessingFolders.FaultedFolder);
+            }
         }
 
-        private void ProcessFile(string filePath)
+        private void AddWatcher(object sender, FileSystemEventArgs e)
+        {
+            this.FileProcessing(e.FullPath);
+        }
+
+        private void FilesPreprocessing()
+        {
+            foreach (var file in Directory.EnumerateFiles(SaleProcessingFolders.ProcessedFolder))
+            {
+                this.FileProcessing(file);
+            }
+        }
+
+        private void FileProcessing(string filePath)
         {
             try
             {
-                Task<List<int>> task = Task.Factory.StartNew(() => this.SalesService.CreateSales(filePath));
+                var task = Task.Factory.StartNew(() => SalesService.CreateSales(filePath));
                 if (task.Exception == null)
                 {
-                    task.ContinueWith(t => { AfterProcessFile(filePath, t.Result); });
+                    task.ContinueWith(t => { FilePostProcessing(filePath, t.Result); });
                 }
                 else
                 {
-                    foreach (var ex in task.Exception.InnerExceptions)
+                    foreach (var exception in task.Exception.InnerExceptions)
                     {
-                        this.logger.Error(ex.Message);
+                        logger.Error(exception.Message);
                     }
  
-                    task.ContinueWith(t => { AfterProcessFile(filePath, new List<int>() { -1 }); });
+                    task.ContinueWith(t => { FilePostProcessing(filePath, new List<int>() { -1 }); });
                 }
             }
             catch (Exception ex)
             {
-                this.logger.Error(ex.Message);
+                logger.Error(ex.Message);
             }
         }
 
-        private void AfterProcessFile(string filePath, List<int> faultedLines)
+        private void FilePostProcessing(string filePath, List<int> faultedLines)
         {
+            var fileName = Path.GetFileName(filePath);
+            if (fileName == null)
+            {
+                logger.Error($"File {fileName} is not found.");
+                return;
+            }
+
             if (faultedLines.Count == 0)
             {
-                var fileName = Path.GetFileName(filePath);
-                File.Move(filePath, Path.Combine(ProcessedDirectory, fileName));
-                this.logger.Info($"File {filePath} parsed successfully.");
+                File.Move(
+                    filePath, 
+                    Path.Combine(SaleProcessingFolders.ProcessedFolder, fileName));
+
+                logger.Info($"{filePath} - Successful file processing.");
             }
             else
             {
-                var fileName = Path.GetFileName(filePath);
-                File.Move(filePath, Path.Combine(FaultedDirectory, fileName));
-                this.logger.Info($"File {filePath} parsed with errors. Number of faulted strings are ");
-                foreach (var faultLine in faultedLines)
+                File.Move(
+                    filePath, 
+                    Path.Combine(SaleProcessingFolders.FaultedFolder, fileName));
+
+                logger.Info($"{filePath} - File processing failed. Error lines :");
+                foreach (var line in faultedLines)
                 {
-                    this.logger.Info($"{faultLine} ");
+                    logger.Info($"{line} ");
                 }
-            }
-        }
-
-        private void ProcessInitialFiles()
-        {
-            var files = Directory.EnumerateFiles(InitialDirectory);
-            foreach (var file in files)
-            {
-                ProcessFile(file);
-            }
-        }
-
-        private void CreateIfNotExistsFolders(string initialFolder, string processedFolder, string faultedFolder)
-        {
-            if (!Directory.Exists(initialFolder))
-            {
-                Directory.CreateDirectory(initialFolder);
-            }
-
-            if (!Directory.Exists(processedFolder))
-            {
-                Directory.CreateDirectory(processedFolder);
-            }
-
-            if (!Directory.Exists(faultedFolder))
-            {
-                Directory.CreateDirectory(faultedFolder);
             }
         }
     }

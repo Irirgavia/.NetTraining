@@ -4,9 +4,9 @@
 
     public class Configuгator
     {
-        public SaleProcessingFolder Configure()
+        public SaleProcessingFolders Configure()
         {
-            var saleProcessingFolder = new SaleProcessingFolder();
+            var saleProcessingFolder = new SaleProcessingFolders();
             var section = (StartupFoldersConfigSection)System.Configuration.ConfigurationManager.GetSection("StartupFolders");
             if (section != null)
             {

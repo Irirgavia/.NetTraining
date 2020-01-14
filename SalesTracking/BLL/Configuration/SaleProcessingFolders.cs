@@ -1,8 +1,8 @@
 ﻿namespace BLL.Configuration
 {
-    public class SaleProcessingFolder
+    public class SaleProcessingFolders
     {
-        public SaleProcessingFolder()
+        public SaleProcessingFolders()
         {
             InitialFolder = string.Empty;
             ProcessedFolder = string.Empty;
