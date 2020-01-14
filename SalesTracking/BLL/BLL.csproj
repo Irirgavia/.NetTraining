@@ -31,8 +31,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.6.8\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,13 +49,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\Configuгator.cs" />
+    <Compile Include="Configuration\Constants.cs" />
+    <Compile Include="Configuration\FolderElement.cs" />
+    <Compile Include="Configuration\FoldersCollection.cs" />
+    <Compile Include="Configuration\StartupFoldersConfigSection.cs" />
     <Compile Include="FolderTrackingWatcher.cs" />
     <Compile Include="Parser\CSVParser.cs" />
     <Compile Include="Parser\ICSVParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SalesService.cs" />
+    <Compile Include="Writer\ConsoleWriter.cs" />
     <Compile Include="Writer\FileWriter.cs" />
     <Compile Include="Writer\IWriter.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="NLog.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLEntity\BLEntity.csproj">
+      <Project>{27b8bef5-7992-404d-9390-476f462673fb}</Project>
+      <Name>BLEntity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{a00cb205-7d5b-4e20-8a05-dadabef90ef1}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
