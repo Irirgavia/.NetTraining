@@ -2,18 +2,17 @@
 {
     using System.Linq;
 
-    using BLEntity;
-
+    using DAL.Entity;
     using DAL.Repositories.Interfaces;
 
-    public class ProductRepository : GenericRepository<Product, SalesContext>, IProductRepository
+    public class ProductRepository : GenericRepository<ProductEntity, SalesContext>, IProductRepository
     {
         public ProductRepository(SalesContext context)
             : base(context)
         {
         }
 
-        public Product FindByName(string name)
+        public ProductEntity FindByName(string name)
         {
             return Context.Products.FirstOrDefault(x => x.Name == name);
         }

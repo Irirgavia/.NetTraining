@@ -2,12 +2,12 @@
 {
     using System.Collections.Generic;
 
-    using BLEntity;
+    using DAL.Entity;
 
-    public interface IRecordFileRepository : IGenericRepository<RecordFile>
+    public interface IRecordFileRepository : IGenericRepository<RecordFileEntity>
     {
-        RecordFile GetByFileName(string fileName);
+        RecordFileEntity GetByFileName(string fileName);
 
-        IEnumerable<RecordFile> GetByUserId(int managerId);
+        IEnumerable<RecordFileEntity> GetByUserId(int managerId);
     }
 }

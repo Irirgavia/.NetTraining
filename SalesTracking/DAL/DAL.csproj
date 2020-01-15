@@ -51,6 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\IIdentifier.cs" />
+    <Compile Include="Entity\ProductEntity.cs" />
+    <Compile Include="Entity\RecordFileEntity.cs" />
+    <Compile Include="Entity\SaleEntity.cs" />
+    <Compile Include="Entity\UserEntity.cs" />
     <Compile Include="Repositories\Interfaces\IProductRepository.cs" />
     <Compile Include="Repositories\Interfaces\IRecordFileRepository.cs" />
     <Compile Include="Repositories\Interfaces\IGenericRepository.cs" />
@@ -71,12 +76,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BLEntity\BLEntity.csproj">
-      <Project>{27b8bef5-7992-404d-9390-476f462673fb}</Project>
-      <Name>BLEntity</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

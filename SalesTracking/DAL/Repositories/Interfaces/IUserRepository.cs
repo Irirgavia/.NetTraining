@@ -1,9 +1,9 @@
 ﻿namespace DAL.Repositories.Interfaces
 {
-    using BLEntity;
+    using DAL.Entity;
 
-    public interface IUserRepository : IGenericRepository<User>
+    public interface IUserRepository : IGenericRepository<UserEntity>
     {
-        User FindByName(string lastName);
+        UserEntity FindByName(string lastName);
     }
 }

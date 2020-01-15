@@ -3,14 +3,14 @@
     using System;
     using System.Collections.Generic;
 
-    using BLEntity;
+    using DAL.Entity;
 
-    public interface ISaleRepository : IGenericRepository<Sale>
+    public interface ISaleRepository : IGenericRepository<SaleEntity>
     {
-        IEnumerable<Sale> GetByUser(int clientId);
+        IEnumerable<SaleEntity> GetByUser(int clientId);
 
-        IEnumerable<Sale> GetByProduct(int productId);
+        IEnumerable<SaleEntity> GetByProduct(int productId);
 
-        IEnumerable<Sale> GetByDate(DateTime date);
+        IEnumerable<SaleEntity> GetByDate(DateTime date);
     }
 }

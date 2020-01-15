@@ -2,7 +2,7 @@
 {
     using System.Data.Entity;
 
-    using BLEntity;
+    using DAL.Entity;
 
     public class SalesContext : DbContext
     {
@@ -16,12 +16,12 @@
         {
         }
 
-        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductEntity> Products { get; set; }
 
-        public DbSet<Sale> Sales { get; set; }
+        public DbSet<SaleEntity> Sales { get; set; }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<UserEntity> Users { get; set; }
 
-        public DbSet<RecordFile> RecordFiles { get; set; }
+        public DbSet<RecordFileEntity> RecordFiles { get; set; }
     }
 }

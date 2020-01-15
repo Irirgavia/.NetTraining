@@ -5,10 +5,13 @@
     using System.IO;
     using System.Linq;
 
+    using AutoMapper;
+
     using BLEntity;
 
     using BLL.Parser;
 
+    using DAL.Entity;
     using DAL.Repositories;
     using DAL.Repositories.Interfaces;
 
@@ -70,14 +73,14 @@
             }
         }
 
-        private RecordFile GetRecordFile(string fileName, IUserRepository repository)
+        private RecordFileEntity GetRecordFile(string fileName, IUserRepository repository)
         {
             try
             {
                 var recordInfo = fileName
                     .Split(new char[] { '\\', }).ToList().Last()
                     .Split(new char[] { '_', '.' });
-                var user = new User(recordInfo[0]);
+                var user = new UserEntity(recordInfo[0]);
                 int userId;
                 lock (userLocker)
                 {
@@ -89,7 +92,7 @@
                     int.Parse(recordInfo[1].Substring(2, 2)),
                     int.Parse(recordInfo[1].Substring(0, 2)));
 
-                return new RecordFile(fileName, userId, date);
+                return new RecordFileEntity(fileName, userId, date);
             }
             catch
             {
@@ -97,7 +100,7 @@
             }
         }
 
-        private Sale CreateSale(List<string> saleItems, RecordFile recordFile)
+        private SaleEntity CreateSale(List<string> saleItems, RecordFileEntity recordFile)
         {
             Repository.RecordFileRepository.Create(recordFile);
 
@@ -112,21 +115,21 @@
             }
 
             var userName = saleItems[1].Split(new char[] { ' ' });
-            var user = new User(userName[0], userName[1]);
+            var user = new UserEntity(userName[0], userName[1]);
             int userId;
             lock (userLocker)
             {
                 userId = Repository.UserRepository.CreateOrUpdate(user, x => x.LastName == user.LastName);
             }
 
-            var product = new Product(saleItems[2]);
+            var product = new ProductEntity(saleItems[2]);
             int productId;
             lock (productLocker)
             {
                 productId = Repository.ProductRepository.CreateOrUpdate(product, x => x.Name == product.Name);
             }
 
-            return new Sale(date, userId, productId, cost, recordFile.Id);
+            return new SaleEntity(date, userId, productId, cost, recordFile.Id);
         }
     }
 }

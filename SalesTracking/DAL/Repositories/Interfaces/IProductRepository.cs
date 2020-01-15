@@ -1,10 +1,10 @@
 ﻿namespace DAL.Repositories.Interfaces
 {
-    using BLEntity;
+    using DAL.Entity;
 
-    public interface IProductRepository : IGenericRepository<Product>
+    public interface IProductRepository : IGenericRepository<ProductEntity>
     {
-        Product FindByName(string name);
+        ProductEntity FindByName(string name);
 
     }
 }

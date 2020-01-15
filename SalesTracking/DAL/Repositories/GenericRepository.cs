@@ -5,8 +5,7 @@
     using System.Data.Entity;
     using System.Linq;
 
-    using BLEntity;
-
+    using DAL.Entity;
     using DAL.Repositories.Interfaces;
 
     public class GenericRepository<TEntity, TContext> : IGenericRepository<TEntity> 
