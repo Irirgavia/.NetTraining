@@ -1,6 +1,6 @@
 ﻿namespace DAL.Entity
 {
-    public class UserEntity
+    public class UserEntity : IIdentifier
     {
         public UserEntity()
         {

@@ -58,12 +58,12 @@
             var foundedItem = dbSet.FirstOrDefault(predicate);
             if (foundedItem != null)
             {
-                id = (foundedItem as IIdentifier).Id;
+                id = ((IIdentifier)foundedItem).Id;
             }
             else
             {
                 Create(entity);
-                id = (entity as IIdentifier).Id;
+                id = ((IIdentifier)entity).Id;
             }
 
             return id;

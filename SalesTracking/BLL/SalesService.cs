@@ -78,8 +78,8 @@
             try
             {
                 var recordInfo = fileName
-                    .Split(new char[] { '\\', }).ToList().Last()
-                    .Split(new char[] { '_', '.' });
+                    .Split('\\').ToList().Last()
+                    .Split('_', '.');
                 var user = new UserEntity(recordInfo[0]);
                 int userId;
                 lock (userLocker)
@@ -114,7 +114,7 @@
                 throw new FormatException("Invalid cost format.");
             }
 
-            var userName = saleItems[1].Split(new char[] { ' ' });
+            var userName = saleItems[1].Split(' ');
             var user = new UserEntity(userName[0], userName[1]);
             int userId;
             lock (userLocker)

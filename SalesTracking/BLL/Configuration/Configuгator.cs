@@ -1,32 +1,32 @@
 ﻿namespace BLL.Configuration
 {
     using System;
+    using System.Configuration;
 
     public class Configuгator
     {
         public SaleProcessingFolders Configure()
         {
             var saleProcessingFolder = new SaleProcessingFolders();
-            var section = (StartupFoldersConfigSection)System.Configuration.ConfigurationManager.GetSection("StartupFolders");
+            var section = (StartupFoldersConfigSection)ConfigurationManager.GetSection("StartupFolders");
             if (section != null)
             {
-                if (section.FolderItems[Constants.InitialFolder] != null)
-                {
-                    saleProcessingFolder.InitialFolder = section.FolderItems[Constants.InitialFolder];
-                }
-
-                if (section.FolderItems[Constants.ProcessedFolder] != null)
-                {
-                    saleProcessingFolder.ProcessedFolder = section.FolderItems[Constants.ProcessedFolder];
-                }
-
-                if (section.FolderItems[Constants.FaultedFolder] != null)
-                {
-                    saleProcessingFolder.FaultedFolder = section.FolderItems[Constants.FaultedFolder];
-                }
+                saleProcessingFolder.InitialFolder = GetFolder(section, Constants.InitialFolder);
+                saleProcessingFolder.ProcessedFolder = GetFolder(section, Constants.ProcessedFolder);
+                saleProcessingFolder.FaultedFolder = GetFolder(section, Constants.FaultedFolder);
             }
 
             return saleProcessingFolder;
+        }
+
+        private string GetFolder(StartupFoldersConfigSection section, string folder)
+        {
+            if (section.FolderItems[folder] == null)
+            {
+                return string.Empty;
+            }
+
+            return section.FolderItems[folder];
         }
     }
 }

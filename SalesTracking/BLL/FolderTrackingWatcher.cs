@@ -17,7 +17,10 @@
         public FolderTrackingWatcher(SaleProcessingFolders saleProcessingFolders)
         {
             SaleProcessingFolders = saleProcessingFolders;
-            CreateIfNotExistsFolders(SaleProcessingFolders);
+            CreateIfNotExistsFolder(SaleProcessingFolders.InitialFolder);
+            CreateIfNotExistsFolder(SaleProcessingFolders.ProcessedFolder);
+            CreateIfNotExistsFolder(SaleProcessingFolders.FaultedFolder);
+
             SalesService = new SalesService(new CSVParser());
 
             Watcher = new FileSystemWatcher(SaleProcessingFolders.InitialFolder);
@@ -56,21 +59,11 @@
             }
         }
 
-        private void CreateIfNotExistsFolders(SaleProcessingFolders saleProcessingFolders)
+        private void CreateIfNotExistsFolder(string folder)
         {
-            if (!Directory.Exists(saleProcessingFolders.InitialFolder))
+            if (!Directory.Exists(folder))
             {
-                Directory.CreateDirectory(saleProcessingFolders.InitialFolder);
-            }
-
-            if (!Directory.Exists(saleProcessingFolders.ProcessedFolder))
-            {
-                Directory.CreateDirectory(saleProcessingFolders.ProcessedFolder);
-            }
-
-            if (!Directory.Exists(saleProcessingFolders.FaultedFolder))
-            {
-                Directory.CreateDirectory(saleProcessingFolders.FaultedFolder);
+                Directory.CreateDirectory(folder);
             }
         }
 
@@ -95,16 +88,16 @@
                 if (task.Exception == null)
                 {
                     task.ContinueWith(t => { FilePostProcessing(filePath, t.Result); });
+                    return;
                 }
-                else
+
+                foreach (var exception in task.Exception.InnerExceptions)
                 {
-                    foreach (var exception in task.Exception.InnerExceptions)
-                    {
-                        logger.Error(exception.Message);
-                    }
- 
-                    task.ContinueWith(t => { FilePostProcessing(filePath, new List<int>() { -1 }); });
+                    logger.Error(exception.Message);
                 }
+
+                task.ContinueWith(t => { FilePostProcessing(filePath, new List<int>() { -1 }); });
+
             }
             catch (Exception ex)
             {
@@ -123,23 +116,18 @@
 
             if (faultedLines.Count == 0)
             {
-                File.Move(
-                    filePath, 
-                    Path.Combine(SaleProcessingFolders.ProcessedFolder, fileName));
+                File.Move(filePath, Path.Combine(SaleProcessingFolders.ProcessedFolder, fileName));
 
                 logger.Info($"{filePath} - Successful file processing.");
+                return;
             }
-            else
-            {
-                File.Move(
-                    filePath, 
-                    Path.Combine(SaleProcessingFolders.FaultedFolder, fileName));
 
-                logger.Info($"{filePath} - File processing failed. Error lines :");
-                foreach (var line in faultedLines)
-                {
-                    logger.Info($"{line} ");
-                }
+            File.Move(filePath, Path.Combine(SaleProcessingFolders.FaultedFolder, fileName));
+
+            logger.Info($"{filePath} - File processing failed. Error lines :");
+            foreach (var line in faultedLines)
+            {
+                logger.Info($"{line} ");
             }
         }
     }
