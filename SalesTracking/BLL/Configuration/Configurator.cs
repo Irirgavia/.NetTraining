@@ -3,9 +3,9 @@
     using System;
     using System.Configuration;
 
-    public class Configuгator
+    public static class Configurator
     {
-        public SaleProcessingFolders Configure()
+        public static SaleProcessingFolders Configure()
         {
             var saleProcessingFolder = new SaleProcessingFolders();
             var section = (StartupFoldersConfigSection)ConfigurationManager.GetSection("StartupFolders");
@@ -19,7 +19,7 @@
             return saleProcessingFolder;
         }
 
-        private string GetFolder(StartupFoldersConfigSection section, string folder)
+        private static string GetFolder(StartupFoldersConfigSection section, string folder)
         {
             if (section.FolderItems[folder] == null)
             {
