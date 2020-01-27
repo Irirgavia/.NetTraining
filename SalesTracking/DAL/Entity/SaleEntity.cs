@@ -1,15 +1,18 @@
 ﻿namespace DAL.Entity
 {
     using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
 
+    [Table("Sales")]
     public class SaleEntity : IIdentifier
     {
-        public SaleEntity(DateTime date, int clienId, int productId, decimal cost, int recordFileId)
+        public SaleEntity(DateTime date, UserEntity user, ICollection<ProductEntity> products, RecordFileEntity recordFile, decimal cost)
         {
             Date = date;
-            ClientId = clienId;
-            ProductId = productId;
-            RecordFileId = recordFileId;
+            User = user;
+            Products = products;
+            RecordFile = recordFile;
             Cost = cost;
         }
 
@@ -17,11 +20,11 @@
 
         public DateTime Date { get; set; }
 
-        public int ClientId { get; set; }
+        public UserEntity User { get; set; }
 
-        public int ProductId { get; set; }
+        public ICollection<ProductEntity> Products { get; set; }
 
-        public int RecordFileId { get; set; }
+        public RecordFileEntity RecordFile { get; set; }
 
         public decimal Cost { get; set; }
 

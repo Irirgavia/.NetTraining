@@ -9,8 +9,6 @@
     {
         IEnumerable<SaleEntity> GetByUser(int clientId);
 
-        IEnumerable<SaleEntity> GetByProduct(int productId);
-
         IEnumerable<SaleEntity> GetByDate(DateTime date);
     }
 }

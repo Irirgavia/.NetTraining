@@ -8,7 +8,7 @@
     {
         static SalesContext()
         {
-            Database.SetInitializer<SalesContext>(new SalesContextInitializer());
+            // Database.SetInitializer<SalesContext>(new SalesContextInitializer());
         }
 
         public SalesContext()
@@ -23,5 +23,20 @@
         public DbSet<UserEntity> Users { get; set; }
 
         public DbSet<RecordFileEntity> RecordFiles { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ProductEntity>().ToTable("Products");
+            modelBuilder.Entity<RecordFileEntity>().ToTable("RecordFiles");
+            modelBuilder.Entity<ProductEntity>().ToTable("Products");
+            modelBuilder.Entity<UserEntity>().ToTable("Users");
+            modelBuilder.Ignore<SalesContext>();
+
+            modelBuilder.Entity<RecordFileEntity>().HasRequired(u => u.User);
+            modelBuilder.Entity<UserEntity>()
+                .HasMany(u => u.Sales)
+                .WithRequired(s => s.User);
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

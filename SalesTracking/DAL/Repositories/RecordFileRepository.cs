@@ -18,9 +18,9 @@
             return Context.RecordFiles.FirstOrDefault(x => x.FileName == fileName);
         }
 
-        public IEnumerable<RecordFileEntity> GetByUserId(int managerId)
+        public IEnumerable<RecordFileEntity> GetByUserId(int userId)
         {
-            return Context.RecordFiles.Where(x => x.ManagerId == managerId);
+            return Context.RecordFiles.Where(x => x.User.Id == userId);
         }
     }
 }
