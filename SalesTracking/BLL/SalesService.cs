@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
     using System.Linq;
 
@@ -17,20 +18,20 @@
 
     public class SalesService : IDisposable
     {
-        private readonly object productLocker = new object();
-        private readonly object userLocker = new object();
+        private static readonly object productLocker = new object();
+        private static readonly object userLocker = new object();
+
+        private UnitOfWork repository;
+
+        private ICSVParser parser;
 
         public SalesService(ICSVParser parser)
         {
-            Repository = new StorageRepository();
-            Parser = parser;
+            this.repository = new UnitOfWork();
+            this.parser = parser;
         }
 
-        private IStorageRepository Repository { get; }
-
-        private ICSVParser Parser { get; }
-
-        public List<int> CreateSales(string fileName)
+        public IList<int> CreateSales(string fileName)
         {
             var faultedStrings = new List<int>();
             if (!fileName.EndsWith(".csv"))
@@ -38,15 +39,15 @@
                 return faultedStrings;
             }
 
-            var recordFile = GetRecordFile(fileName, Repository.UserRepository);
+            var recordFile = GetRecordFile(fileName, repository.UserRepository);
             using (var streamReader = new StreamReader(fileName))
             {
                 int i = 0;
-                foreach (var items in Parser.ParseCSV(streamReader))
+                foreach (var items in parser.ParseCSV(streamReader))
                 {
                     try
                     {
-                        Repository.SaleRepository.Create(CreateSale(items, recordFile));
+                        repository.SaleRepository.Create(CreateSale(items, recordFile));
                         i++;
                     }
                     catch (FormatException)
@@ -69,7 +70,7 @@
         {
             if (disposing)
             {
-                this.Repository?.Dispose();
+                repository?.Dispose();
             }
         }
 
@@ -77,20 +78,15 @@
         {
             try
             {
-                var recordInfo = fileName
-                    .Split('\\').ToList().Last()
-                    .Split('_', '.');
-                var user = new UserEntity(recordInfo[0]);
+                var recordInfo = Path.GetFileNameWithoutExtension(fileName)?.Split('_');
+                var user = new UserEntity(recordInfo?[0]);
                 int userId;
                 lock (userLocker)
                 {
                     userId = repository.CreateOrUpdate(user, x => x.LastName == user.LastName);
                 }
 
-                var date = new DateTime(
-                    int.Parse(recordInfo[1].Substring(4, 4)),
-                    int.Parse(recordInfo[1].Substring(2, 2)),
-                    int.Parse(recordInfo[1].Substring(0, 2)));
+                var date = DateTime.ParseExact(recordInfo?[1], "ddMMyyyy", CultureInfo.InvariantCulture);
 
                 return new RecordFileEntity(fileName, userId, date);
             }
@@ -102,7 +98,7 @@
 
         private SaleEntity CreateSale(List<string> saleItems, RecordFileEntity recordFile)
         {
-            Repository.RecordFileRepository.Create(recordFile);
+            repository.RecordFileRepository.Create(recordFile);
 
             if (!DateTime.TryParse(saleItems[0], out var date))
             {
@@ -119,14 +115,14 @@
             int userId;
             lock (userLocker)
             {
-                userId = Repository.UserRepository.CreateOrUpdate(user, x => x.LastName == user.LastName);
+                userId = repository.UserRepository.CreateOrUpdate(user, x => x.LastName == user.LastName);
             }
 
             var product = new ProductEntity(saleItems[2]);
             int productId;
             lock (productLocker)
             {
-                productId = Repository.ProductRepository.CreateOrUpdate(product, x => x.Name == product.Name);
+                productId = repository.ProductRepository.CreateOrUpdate(product, x => x.Name == product.Name);
             }
 
             return new SaleEntity(date, userId, productId, cost, recordFile.Id);

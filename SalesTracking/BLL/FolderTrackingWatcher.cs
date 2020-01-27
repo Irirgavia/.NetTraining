@@ -14,34 +14,34 @@
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        public FolderTrackingWatcher(SaleProcessingFolders saleProcessingFolders)
+        private SaleProcessingFolders saleProcessingFolders;
+
+        private FileSystemWatcher watcher;
+
+        private SalesService salesService;
+
+        public FolderTrackingWatcher(SaleProcessingFolders saleProcessingFolders, SalesService salesService)
         {
-            SaleProcessingFolders = saleProcessingFolders;
-            CreateIfNotExistsFolder(SaleProcessingFolders.InitialFolder);
-            CreateIfNotExistsFolder(SaleProcessingFolders.ProcessedFolder);
-            CreateIfNotExistsFolder(SaleProcessingFolders.FaultedFolder);
+            this.saleProcessingFolders = saleProcessingFolders;
+            CreateIfNotExistsFolder(this.saleProcessingFolders.InitialFolder);
+            CreateIfNotExistsFolder(this.saleProcessingFolders.ProcessedFolder);
+            CreateIfNotExistsFolder(this.saleProcessingFolders.FaultedFolder);
 
-            SalesService = new SalesService(new CSVParser());
+            this.salesService = salesService;//new salesService(new CSVParser());
 
-            Watcher = new FileSystemWatcher(SaleProcessingFolders.InitialFolder);
-            Watcher.Created += AddWatcher;
+            this.watcher = new FileSystemWatcher(this.saleProcessingFolders.InitialFolder);
+            this.watcher.Created += AddWatcher;
         }
-
-        private SaleProcessingFolders SaleProcessingFolders { get; }
-
-        private FileSystemWatcher Watcher { get; }
-
-        private SalesService SalesService { get; }
 
         public void Start()
         {
-            this.FilesPreprocessing();
-            Watcher.EnableRaisingEvents = true;
+            FilesPreprocessing();
+            watcher.EnableRaisingEvents = true;
         }
 
         public void Stop()
         {
-            Watcher.EnableRaisingEvents = false;
+            watcher.EnableRaisingEvents = false;
         }
 
         public void Dispose()
@@ -54,8 +54,8 @@
         {
             if (disposing)
             {
-                Watcher?.Dispose();
-                SalesService?.Dispose();
+                watcher?.Dispose();
+                salesService?.Dispose();
             }
         }
 
@@ -69,14 +69,14 @@
 
         private void AddWatcher(object sender, FileSystemEventArgs e)
         {
-            this.FileProcessing(e.FullPath);
+            FileProcessing(e.FullPath);
         }
 
         private void FilesPreprocessing()
         {
-            foreach (var file in Directory.EnumerateFiles(SaleProcessingFolders.ProcessedFolder))
-            {
-                this.FileProcessing(file);
+            foreach (var file in Directory.EnumerateFiles(saleProcessingFolders.ProcessedFolder))
+            {//ex
+                FileProcessing(file);
             }
         }
 
@@ -84,7 +84,7 @@
         {
             try
             {
-                var task = Task.Factory.StartNew(() => SalesService.CreateSales(filePath));
+                var task = Task.Factory.StartNew(() => salesService.CreateSales(filePath));
                 if (task.Exception == null)
                 {
                     task.ContinueWith(t => { FilePostProcessing(filePath, t.Result); });
@@ -97,7 +97,7 @@
                 }
 
                 task.ContinueWith(t => { FilePostProcessing(filePath, new List<int>() { -1 }); });
-
+               
             }
             catch (Exception ex)
             {
@@ -116,18 +116,18 @@
 
             if (faultedLines.Count == 0)
             {
-                File.Move(filePath, Path.Combine(SaleProcessingFolders.ProcessedFolder, fileName));
+                File.Move(filePath, Path.Combine(saleProcessingFolders.ProcessedFolder, fileName));
 
                 logger.Info($"{filePath} - Successful file processing.");
                 return;
             }
 
-            File.Move(filePath, Path.Combine(SaleProcessingFolders.FaultedFolder, fileName));
+            File.Move(filePath, Path.Combine(saleProcessingFolders.FaultedFolder, fileName));
 
             logger.Info($"{filePath} - File processing failed. Error lines :");
             foreach (var line in faultedLines)
             {
-                logger.Info($"{line} ");
+                logger.Warn($"{line} ");
             }
         }
     }
