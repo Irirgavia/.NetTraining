@@ -60,13 +60,11 @@
     <Compile Include="Repositories\Interfaces\IRecordFileRepository.cs" />
     <Compile Include="Repositories\Interfaces\IGenericRepository.cs" />
     <Compile Include="Repositories\Interfaces\ISaleRepository.cs" />
-    <Compile Include="Repositories\Interfaces\IStorageRepository.cs" />
     <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\RecordFileRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Repositories\SaleRepository.cs" />
-    <Compile Include="Repositories\StorageRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="SalesContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
