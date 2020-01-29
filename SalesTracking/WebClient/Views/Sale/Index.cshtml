@@ -1,0 +1,37 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Sales</title>
+</head>
+<body>
+    <div>
+        <h3>All sales</h3>
+        <table>
+            <tr>
+                <td><p>Date</p></td>
+                <td><p>User</p></td>
+                <td><p>Products</p></td>
+                <td><p>Cost</p></td>
+            </tr>
+            @foreach (var sale in ViewBag.Sales)
+            {
+                <tr>
+                    <td><p>@sale.Date</p></td>
+                    <td><p>@sale.User</p></td>
+                    <td><p>@sale.Products</p></td>
+                    <td><p>@sale.Cost</p></td>
+                    <td><p><a href="/Sale/Edit/@sale.Id">Edit</a></p></td>
+                </tr>
+            }
+            <tr><td><p><a href="/Sale/Edit/@ViewBag.Sales.Count() + 1">Create sale</a></p></td></tr>
+        </table>
+    </div>
+</body>
+</html>

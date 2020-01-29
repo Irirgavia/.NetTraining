@@ -180,12 +180,13 @@
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SaleController.cs" />
+    <Compile Include="Filters\AuthenticationFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\UserModel.cs" />
-    <Compile Include="ObjectMapper.cs" />
-    <Compile Include="RoleAttribute.cs" />
+    <Compile Include="ModelMapper.cs" />
+    <Compile Include="Filters\RoleAttribute.cs" />
     <Compile Include="Models\ClientModel.cs" />
     <Compile Include="Models\CredentialsModel.cs" />
     <Compile Include="Models\SaleModel.cs" />
@@ -229,11 +230,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Sale\Index.cshtml" />
     <Content Include="Views\Sale\Edit.cshtml" />
+    <Content Include="Views\Client\Index.cshtml" />
+    <Content Include="Views\Client\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Filters\" />
-    <Folder Include="Views\Client\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

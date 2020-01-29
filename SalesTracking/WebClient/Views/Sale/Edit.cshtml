@@ -1,0 +1,57 @@
+﻿@model WebClient.Models.SaleModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Edit sale</title>
+    </head>
+    <body>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <fieldset>
+                <legend>Sale</legend>
+
+                <div>
+                    @Html.LabelFor(model => model.Date)
+                </div>
+                <div>
+                    @Html.EditorFor(model => model.User)
+                </div>
+                <div>
+                    @Html.EditorFor(model => model.Products)
+                </div>
+                <div>
+                    @Html.EditorFor(model => model.Cost)
+                </div>
+
+                <p>
+                    <input id="saveButton" type="submit" value="Save" />
+                </p>
+            </fieldset>
+        }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+        <script type="text/javascript">
+            onSaleSave = function () {
+                $("form").on("submit", function (e) {
+                    e.preventDefault();
+                    $.post('@Url.Action("Edit", "Sale")', $("form").serialize(), function (data, textStatus, jHXR));
+                });
+            }
+
+            $("#saveButton").click(onSaleSave);
+        </script>
+    </body>
+</html>
