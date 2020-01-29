@@ -96,6 +96,12 @@
             clientUnitOfWork.SaveChanges();
         }
 
+        public void UpdateClient(ClientDTO client)
+        {
+            clientUnitOfWork.ClientRepository.UpdateClient(client.Id, ObjectMapper.ToDLO(client.User), ObjectMapper.ToDLO(client.Credentials));
+            clientUnitOfWork.SaveChanges();
+        }
+
         public bool IsAuthenticate(string login, string password)
         {
             if (!clientUnitOfWork.CredentialsRepository.IsLoginExists(login))
