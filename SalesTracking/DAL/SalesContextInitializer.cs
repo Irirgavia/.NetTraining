@@ -8,7 +8,7 @@
     {
         protected override void Seed(SalesContext db)
         {
-            UserEntity user = new UserEntity("user", "anastasiya", "kramushchenka", "mail.com");
+            UserEntity user = new UserEntity("anastasiya", "kramushchenka", "mail.com");
             db.Users.Add(user);
             db.SaveChanges();
         }
