@@ -7,7 +7,9 @@
 
     public interface ISaleRepository : IGenericRepository<SaleEntity>
     {
-        IEnumerable<SaleEntity> GetByUser(int clientId);
+        IEnumerable<SaleEntity> GetByUserId(int userId);
+
+        IEnumerable<SaleEntity> GetByUser(UserEntity user);
 
         IEnumerable<SaleEntity> GetByDate(DateTime date);
     }

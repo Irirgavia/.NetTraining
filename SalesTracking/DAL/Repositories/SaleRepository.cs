@@ -14,9 +14,14 @@
         {
         }
 
-        public IEnumerable<SaleEntity> GetByUser(int userId)
+        public IEnumerable<SaleEntity> GetByUserId(int userId)
         {
             return Context.Sales.Where(x => x.User.Id == userId);
+        }
+
+        public IEnumerable<SaleEntity> GetByUser(UserEntity user)
+        {
+            return Context.Sales.Where(x => x.User == user);
         }
 
         public IEnumerable<SaleEntity> GetByDate(DateTime date)

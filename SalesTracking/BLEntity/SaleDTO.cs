@@ -10,12 +10,12 @@
         {
         }
 
-        public SaleDTO(DateTime date, UserDTO userDto, ICollection<ProductDTO> products, decimal cost, RecordFileDTO recordFileDto)
+        public SaleDTO(DateTime date, UserDTO user, ICollection<ProductDTO> products, decimal cost, RecordFileDTO recordFile)
         {
             Date = date;
-            this.UserDto = userDto;
+            User = user;
             Products = products;
-            this.RecordFileDto = recordFileDto;
+            RecordFile = recordFile;
             Cost = cost;
         }
 
@@ -23,11 +23,11 @@
 
         public DateTime Date { get; set; }
 
-        public UserDTO UserDto { get; set; }
+        public UserDTO User { get; set; }
 
         public ICollection<ProductDTO> Products { get; set; }
 
-        public RecordFileDTO RecordFileDto { get; set; }
+        public RecordFileDTO RecordFile { get; set; }
 
         public decimal Cost { get; set; }
     }
