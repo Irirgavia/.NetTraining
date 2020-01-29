@@ -1,7 +1,6 @@
-﻿namespace WebClient
+﻿namespace WebClient.Filters
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Net;
     using System.Net.Http;
@@ -23,7 +22,7 @@
             this.roles = roles;
         }
 
-        public Task<HttpResponseMessage> FilterAsync(
+        public Task<HttpResponseMessage> Filter(
             HttpActionContext actionContext,
             CancellationToken cancellationToken, 
             Func<Task<HttpResponseMessage>> continuation)
