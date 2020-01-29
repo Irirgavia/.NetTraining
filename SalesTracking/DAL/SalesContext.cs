@@ -8,7 +8,7 @@
     {
         static SalesContext()
         {
-            // Database.SetInitializer<SalesContext>(new SalesContextInitializer());
+             Database.SetInitializer<SalesContext>(new SalesContextInitializer());
         }
 
         public SalesContext()
@@ -29,7 +29,6 @@
             modelBuilder.Entity<ProductEntity>().ToTable("Products");
             modelBuilder.Entity<RecordFileEntity>().ToTable("RecordFiles");
             modelBuilder.Entity<UserEntity>().ToTable("Users");
-            modelBuilder.Ignore<SalesContext>();
 
             modelBuilder.Entity<RecordFileEntity>()
                 .HasRequired(u => u.User);

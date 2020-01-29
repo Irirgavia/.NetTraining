@@ -30,11 +30,6 @@
             return Context.Users.FirstOrDefault(x => x.Email == email);
         }
 
-        public UserEntity GetUserBySale(SaleEntity sale)
-        {
-            return Context.Users.FirstOrDefault(x => x.Sales.co);
-        }
-
         public void CreateUser(string firstname, string lastname, string email)
         {
             var user = new UserEntity(lastname, firstname, email);

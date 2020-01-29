@@ -24,7 +24,6 @@
             modelBuilder.Entity<RoleEntity>().ToTable("Roles");
             modelBuilder.Entity<UserEntity>().ToTable("Users");
             modelBuilder.Entity<CredentialsEntity>().ToTable("Credentials");
-            modelBuilder.Ignore<ClientsContext>();
 
             modelBuilder.Entity<CredentialsEntity>()
                 .HasRequired(c => c.Role);

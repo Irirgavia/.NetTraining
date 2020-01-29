@@ -39,6 +39,17 @@
             return ObjectMapper.ToBLO(client);
         }
 
+        public ClientDTO GetClientById(int id)
+        {
+            var client = clientUnitOfWork.ClientRepository.GetClientById(id);
+            if (client == null)
+            {
+                throw new IndexOutOfRangeException("There is no such user.");
+            }
+
+            return ObjectMapper.ToBLO(client);
+        }
+
         public UserDTO GetUserById(int id)
         {
             var user = clientUnitOfWork.UserRepository.GetUserById(id);
