@@ -74,9 +74,16 @@
 
         private void FilesPreprocessing()
         {
-            foreach (var file in Directory.EnumerateFiles(saleProcessingFolders.ProcessedFolder))
-            {//ex
-                FileProcessing(file);
+            try
+            {
+                foreach (var file in Directory.EnumerateFiles(saleProcessingFolders.ProcessedFolder))
+                {
+                    FileProcessing(file);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.logger.Error(ex.Message);
             }
         }
 
@@ -105,7 +112,7 @@
             }
         }
 
-        private void FilePostProcessing(string filePath, List<int> faultedLines)
+        private void FilePostProcessing(string filePath, IList<int> faultedLines)
         {
             var fileName = Path.GetFileName(filePath);
             if (fileName == null)

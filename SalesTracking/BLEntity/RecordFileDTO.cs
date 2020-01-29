@@ -2,16 +2,16 @@
 {
     using System;
 
-    public class RecordFile : IIdentifier
+    public class RecordFileDTO : IIdentifier
     {
-        public RecordFile()
+        public RecordFileDTO()
         {
         }
 
-        public RecordFile(string fileName, int managerId, DateTime date)
+        public RecordFileDTO(string fileName, UserDTO userDto, DateTime date)
         {
             FileName = fileName;
-            ManagerId = managerId;
+            this.UserDto = userDto;
             Date = date;
         }
 
@@ -19,7 +19,7 @@
 
         public string FileName { get; set; }
 
-        public int ManagerId { get; set; }
+        public UserDTO UserDto { get; set; }
 
         public DateTime Date { get; set; }
     }

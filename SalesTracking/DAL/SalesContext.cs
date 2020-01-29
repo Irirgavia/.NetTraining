@@ -28,14 +28,19 @@
         {
             modelBuilder.Entity<ProductEntity>().ToTable("Products");
             modelBuilder.Entity<RecordFileEntity>().ToTable("RecordFiles");
-            modelBuilder.Entity<ProductEntity>().ToTable("Products");
             modelBuilder.Entity<UserEntity>().ToTable("Users");
             modelBuilder.Ignore<SalesContext>();
 
-            modelBuilder.Entity<RecordFileEntity>().HasRequired(u => u.User);
+            modelBuilder.Entity<RecordFileEntity>()
+                .HasRequired(u => u.User);
+
             modelBuilder.Entity<UserEntity>()
                 .HasMany(u => u.Sales)
                 .WithRequired(s => s.User);
+
+            modelBuilder.Entity<SaleEntity>()
+                .HasMany(s => s.Products);
+
             base.OnModelCreating(modelBuilder);
         }
     }

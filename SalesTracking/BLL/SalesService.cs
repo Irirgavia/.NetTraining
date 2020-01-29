@@ -4,11 +4,6 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
-    using System.Linq;
-
-    using AutoMapper;
-
-    using BLEntity;
 
     using BLL.Parser;
 
@@ -18,16 +13,16 @@
 
     public class SalesService : IDisposable
     {
-        private static readonly object productLocker = new object();
-        private static readonly object userLocker = new object();
+        private static readonly object ProductLocker = new object();
+        private static readonly object UserLocker = new object();
 
-        private UnitOfWork repository;
+        private UnitOfWork unitOfWork;
 
         private ICSVParser parser;
 
         public SalesService(ICSVParser parser)
         {
-            this.repository = new UnitOfWork();
+            this.unitOfWork = new UnitOfWork();
             this.parser = parser;
         }
 
@@ -39,7 +34,7 @@
                 return faultedStrings;
             }
 
-            var recordFile = GetRecordFile(fileName, repository.UserRepository);
+            var recordFile = GetRecordFile(fileName, unitOfWork.UserRepository);
             using (var streamReader = new StreamReader(fileName))
             {
                 int i = 0;
@@ -47,7 +42,7 @@
                 {
                     try
                     {
-                        repository.SaleRepository.Create(CreateSale(items, recordFile));
+                        this.unitOfWork.SaleRepository.Create(CreateSale(items, recordFile));
                         i++;
                     }
                     catch (FormatException)
@@ -70,25 +65,25 @@
         {
             if (disposing)
             {
-                repository?.Dispose();
+                this.unitOfWork?.Dispose();
             }
         }
 
-        private RecordFileEntity GetRecordFile(string fileName, IUserRepository repository)
+        private RecordFileEntity GetRecordFile(string fileName, IUserSaleRepository repository)
         {
             try
             {
                 var recordInfo = Path.GetFileNameWithoutExtension(fileName)?.Split('_');
                 var user = new UserEntity(recordInfo?[0]);
                 int userId;
-                lock (userLocker)
+                lock (UserLocker)
                 {
                     userId = repository.CreateOrUpdate(user, x => x.LastName == user.LastName);
                 }
 
                 var date = DateTime.ParseExact(recordInfo?[1], "ddMMyyyy", CultureInfo.InvariantCulture);
 
-                return new RecordFileEntity(fileName, userId, date);
+                return new RecordFileEntity(fileName, user, date);
             }
             catch
             {
@@ -98,7 +93,7 @@
 
         private SaleEntity CreateSale(List<string> saleItems, RecordFileEntity recordFile)
         {
-            repository.RecordFileRepository.Create(recordFile);
+            this.unitOfWork.RecordFileRepository.Create(recordFile);
 
             if (!DateTime.TryParse(saleItems[0], out var date))
             {
@@ -113,19 +108,20 @@
             var userName = saleItems[1].Split(' ');
             var user = new UserEntity(userName[0], userName[1]);
             int userId;
-            lock (userLocker)
+            lock (UserLocker)
             {
-                userId = repository.UserRepository.CreateOrUpdate(user, x => x.LastName == user.LastName);
+                userId = unitOfWork.UserRepository.CreateOrUpdate(user, x => x.LastName == user.LastName);
             }
 
             var product = new ProductEntity(saleItems[2]);
             int productId;
-            lock (productLocker)
+            lock (ProductLocker)
             {
-                productId = repository.ProductRepository.CreateOrUpdate(product, x => x.Name == product.Name);
+                productId = this.unitOfWork.ProductRepository.CreateOrUpdate(product, x => x.Name == product.Name);
             }
 
-            return new SaleEntity(date, userId, productId, cost, recordFile.Id);
+            var products = new List<ProductEntity>(){ product };
+            return new SaleEntity(date, user, products, recordFile, cost);
         }
     }
 }

@@ -10,7 +10,7 @@
 
         TEntity FindById(int id);
 
-        IEnumerable<TEntity> Get();
+        IEnumerable<TEntity> GetAll();
 
         void Remove(TEntity item);
 

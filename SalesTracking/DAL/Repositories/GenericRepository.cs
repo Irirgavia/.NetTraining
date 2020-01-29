@@ -22,8 +22,7 @@
 
         protected TContext Context { get; }
 
-
-        public IEnumerable<TEntity> Get()
+        public IEnumerable<TEntity> GetAll()
         {
             return dbSet.AsNoTracking().ToList();
         }
@@ -36,19 +35,16 @@
         public void Create(TEntity item)
         {
             dbSet.Add(item);
-            Context.SaveChanges();
         }
 
         public void Update(TEntity item)
         {
             Context.Entry(item).State = EntityState.Modified;
-            Context.SaveChanges();
         }
 
         public void Remove(TEntity item)
         {
             dbSet.Remove(item);
-            Context.SaveChanges();
         }
 
         public int CreateOrUpdate(TEntity entity, Func<TEntity, bool> predicate)

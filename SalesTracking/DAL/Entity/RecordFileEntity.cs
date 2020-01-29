@@ -10,12 +10,12 @@
         public RecordFileEntity(string fileName, UserEntity user, DateTime date)
         {
             FileName = fileName;
-            this.User = user;
+            User = user;
             Date = date;
         }
 
         [Key]
-        public int Id { get; set; }
+        public int Id { get; }
 
         [Required]
         public string FileName { get; set; }
@@ -23,6 +23,7 @@
         [Required]
         public UserEntity User { get; set; }
 
+        [Required]
         public DateTime Date { get; set; }
     }
 }

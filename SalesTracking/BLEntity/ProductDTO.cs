@@ -1,12 +1,12 @@
 ﻿namespace BLEntity
 {
-    public class Product : IIdentifier
+    public class ProductDTO : IIdentifier
     {
-        public Product()
+        public ProductDTO()
         {
         }
 
-        public Product(string name)
+        public ProductDTO(string name)
         {
             Name = name;
         }

@@ -8,41 +8,34 @@
     [Table("Users")]
     public class UserEntity : IIdentifier
     {
-        public UserEntity()
+        public UserEntity(int id, string lastName, string firstName = "", string email = "")
         {
-            Role = "User";
-        }
-
-        public UserEntity(string lastName, string firstName = "")
-        {
-            UserName = "userName";
-            FirstName = firstName;
-            LastName = lastName;
-            Role = "User";
-        }
-
-        public UserEntity(string userName, string firstName, string lastName, string email)
-        {
-            UserName = userName;
+            Id = id;
             FirstName = firstName;
             LastName = lastName;
             Email = email;
-            Role = "User";
+        }
+
+        public UserEntity(string lastName, string firstName = "", string email = "")
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
         }
 
         [Key]
-        public int Id { get; set; }
+        public int Id { get; }
 
-        public string UserName { get; set; }
-
+        [Required]
         public string FirstName { get; set; }
 
+        [Required]
         public string LastName { get; set; }
 
+        [Required]
         public string Email { get; set; }
 
-        public string Role { get; set; }
-
+        [Required]
         public ICollection<SaleEntity> Sales { get; }
     }
 }
