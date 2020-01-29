@@ -13,9 +13,30 @@
     {
         private ClientUnitOfWork clientUnitOfWork;
 
+        public ClientService()
+        {
+            this.clientUnitOfWork = new ClientUnitOfWork();
+            ObjectMapper = new ObjectMapper();
+        }
+
         public ClientService(ClientUnitOfWork clientUnitOfWork)
         {
             this.clientUnitOfWork = clientUnitOfWork;
+            ObjectMapper = new ObjectMapper();
+        }
+
+        public ObjectMapper ObjectMapper { get; }
+
+        public ClientDTO GetClientByLogin(string login)
+        {
+            var user = GetUserByLogin(login);
+            var client = clientUnitOfWork.ClientRepository.GetClientByUser(ObjectMapper.ToDLO(user));
+            if (client == null)
+            {
+                throw new IndexOutOfRangeException("There is no such client.");
+            }
+
+            return ObjectMapper.ToBLO(client);
         }
 
         public UserDTO GetUserById(int id)
@@ -26,7 +47,7 @@
                 throw new IndexOutOfRangeException("There is no such user.");
             }
 
-            return Mapper.Map<UserDTO>(user);
+            return ObjectMapper.ToBLO(user);
         }
 
         public UserDTO GetUserByLogin(string login)
@@ -38,17 +59,12 @@
                 throw new IndexOutOfRangeException("There is no such user.");
             }
 
-            return Mapper.Map<UserDTO>(user);
+            return ObjectMapper.ToBLO(user.User);
         }
 
         public void CreateUser(UserDTO newUser)
         {
-            if (clientUnitOfWork.CredentialsRepository.IsLoginExists(newUser.UserName))
-            {
-                throw new ArgumentException("Such login already exists.");
-            }
-
-            clientUnitOfWork.UserRepository.Create(Mapper.Map<UserEntity>(newUser));
+            clientUnitOfWork.UserRepository.Create(ObjectMapper.ToDLO(newUser));
             clientUnitOfWork.SaveChanges();
         }
 
@@ -64,8 +80,8 @@
             var oldUser = GetUserById(changedUser.Id);
             clientUnitOfWork.UserRepository.UpdateUser(changedUser.Id, newUser.LastName, newUser.FirstName, newUser.Email);
 
-            var client = clientUnitOfWork.ClientRepository.GetClientByUser(Mapper.Map<UserEntity>(oldUser));
-            clientUnitOfWork.ClientRepository.UpdateClient(client.Id, Mapper.Map<UserEntity>(newUser), client.Credentials);
+            var client = clientUnitOfWork.ClientRepository.GetClientByUser(ObjectMapper.ToDLO(oldUser));
+            clientUnitOfWork.ClientRepository.UpdateClient(client.Id, ObjectMapper.ToDLO(newUser), client.Credentials);
             clientUnitOfWork.SaveChanges();
         }
 
@@ -85,23 +101,23 @@
             var role = clientUnitOfWork.ClientRepository.GetClientByUser(user).Credentials.Role;
             if (role != null)
             {
-                return Mapper.Map<RoleDTO>(role);
+                return ObjectMapper.ToBLO(role);
             }
 
-            return Mapper.Map<RoleDTO>(clientUnitOfWork.RoleRepository.GetRoleByName("User"));
+            return ObjectMapper.ToBLO(clientUnitOfWork.RoleRepository.GetRoleByName("User"));
         }
 
         public void UpdateClientRole(string login, string role)
         {
             var user = GetUserByLogin(login);
-            var credentials = this.clientUnitOfWork.CredentialsRepository.GetCredentialsByLogin(login)
-            clientUnitOfWork.ClientRepository.UpdateClient(user.Id, Mapper.Map<UserEntity>(user), credentials);
+            var credentials = this.clientUnitOfWork.CredentialsRepository.GetCredentialsByLogin(login);
+            clientUnitOfWork.ClientRepository.UpdateClient(user.Id, ObjectMapper.ToDLO(user), credentials);
             clientUnitOfWork.SaveChanges();
         }
 
         public bool CheckRole(UserDTO user, string role)
         {
-            var client = clientUnitOfWork.ClientRepository.GetClientByUser(Mapper.Map<UserDTO>(user));
+            var client = clientUnitOfWork.ClientRepository.GetClientByUser(ObjectMapper.ToDLO(user));
             if (string.Equals(client.Credentials.Role.Name, role))
             {
                 return true;

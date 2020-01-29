@@ -60,6 +60,7 @@
     <Compile Include="Configuration\SaleProcessingFolders.cs" />
     <Compile Include="Configuration\StartupFoldersConfigSection.cs" />
     <Compile Include="FolderTrackingWatcher.cs" />
+    <Compile Include="ObjectMapper.cs" />
     <Compile Include="Parser\CSVParser.cs" />
     <Compile Include="Parser\ICSVParser.cs" />
     <Compile Include="PasswordHasher.cs" />

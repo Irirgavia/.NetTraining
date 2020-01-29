@@ -5,6 +5,10 @@
     using System.Globalization;
     using System.IO;
 
+    using AutoMapper;
+
+    using BLEntity;
+
     using BLL.Parser;
 
     using DAL.Entity;
@@ -24,6 +28,36 @@
         {
             this.unitOfWork = new UnitOfWork();
             this.parser = parser;
+            ObjectMapper = new ObjectMapper();
+        }
+
+        public ObjectMapper ObjectMapper { get; }
+
+        public IEnumerable<SaleDTO> GetAllSales()
+        {
+            var sales = new List<SaleDTO>();
+            foreach (var sale in unitOfWork.SaleRepository.GetAll())
+            {
+                sales.Add(ObjectMapper.ToBLO(sale));
+            }
+
+            return sales;
+        }
+
+        public SaleDTO GetSaleById(int saleId)
+        {
+            return ObjectMapper.ToBLO(unitOfWork.SaleRepository.FindById(saleId));
+        }
+
+        public UserDTO GetUserByLastName(string name)
+        {
+            return ObjectMapper.ToBLO(unitOfWork.UserRepository.FindByName(name));
+        }
+
+        public void UpdateSale(SaleDTO newSale)
+        {
+            unitOfWork.SaleRepository.Update(ObjectMapper.ToDLO(newSale));
+            unitOfWork.SaveChanges();
         }
 
         public IList<int> CreateSales(string fileName)
@@ -34,7 +68,7 @@
                 return faultedStrings;
             }
 
-            var recordFile = GetRecordFile(fileName, unitOfWork.UserRepository);
+            var recordFile = ObjectMapper.ToDLO(GetRecordFile(fileName, unitOfWork.UserRepository));
             using (var streamReader = new StreamReader(fileName))
             {
                 int i = 0;
@@ -42,7 +76,7 @@
                 {
                     try
                     {
-                        this.unitOfWork.SaleRepository.Create(CreateSale(items, recordFile));
+                        unitOfWork.SaleRepository.Create(ObjectMapper.ToDLO(CreateSale(items, recordFile)));
                         i++;
                     }
                     catch (FormatException)
@@ -69,7 +103,7 @@
             }
         }
 
-        private RecordFileEntity GetRecordFile(string fileName, IUserSaleRepository repository)
+        private RecordFileDTO GetRecordFile(string fileName, IUserSaleRepository repository)
         {
             try
             {
@@ -83,7 +117,7 @@
 
                 var date = DateTime.ParseExact(recordInfo?[1], "ddMMyyyy", CultureInfo.InvariantCulture);
 
-                return new RecordFileEntity(fileName, user, date);
+                return new RecordFileDTO(fileName, ObjectMapper.ToBLO(user), date);
             }
             catch
             {
@@ -91,7 +125,7 @@
             }
         }
 
-        private SaleEntity CreateSale(List<string> saleItems, RecordFileEntity recordFile)
+        private SaleDTO CreateSale(List<string> saleItems, RecordFileEntity recordFile)
         {
             this.unitOfWork.RecordFileRepository.Create(recordFile);
 
@@ -121,7 +155,20 @@
             }
 
             var products = new List<ProductEntity>(){ product };
-            return new SaleEntity(date, user, products, recordFile, cost);
+            var sale = new SaleEntity(date, user, products, recordFile, cost);
+            return ObjectMapper.ToBLO(sale);
+        }
+
+        public void DeleteSale(int saleId)
+        {
+            var sale = unitOfWork.SaleRepository.FindById(saleId);
+            if (sale == null)
+            {
+                throw new IndexOutOfRangeException("There is no such sale.");
+            }
+
+            unitOfWork.SaleRepository.Remove(sale);
+            unitOfWork.SaveChanges();
         }
     }
 }
