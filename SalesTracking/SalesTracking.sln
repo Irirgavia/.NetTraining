@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleClient", "ConsoleCli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsServiceClient", "WindowsServiceClient\WindowsServiceClient.csproj", "{A57075FB-870D-4287-A298-52E4920A64C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebClient", "WebClient\WebClient.csproj", "{9B2E6622-2356-4C60-B20B-9D784647C07F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{A57075FB-870D-4287-A298-52E4920A64C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A57075FB-870D-4287-A298-52E4920A64C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A57075FB-870D-4287-A298-52E4920A64C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B2E6622-2356-4C60-B20B-9D784647C07F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B2E6622-2356-4C60-B20B-9D784647C07F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B2E6622-2356-4C60-B20B-9D784647C07F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B2E6622-2356-4C60-B20B-9D784647C07F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{695E381E-BBFE-4233-9AA7-1583012FE8DB} = {1DBB2B5A-FC16-4665-81C8-FDED4F8BEF59}
 		{B09309CC-8944-43E9-8B73-82648407A1D4} = {1FFFEF7D-94CB-4A9E-A4B4-ADF811840E7B}
 		{A57075FB-870D-4287-A298-52E4920A64C2} = {1FFFEF7D-94CB-4A9E-A4B4-ADF811840E7B}
+		{9B2E6622-2356-4C60-B20B-9D784647C07F} = {1FFFEF7D-94CB-4A9E-A4B4-ADF811840E7B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {05DFFCD2-BC9F-4EFC-8CC6-0026E0EDB03C}
